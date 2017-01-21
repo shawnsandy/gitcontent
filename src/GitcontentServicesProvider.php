@@ -1,15 +1,15 @@
 <?php
 
-namespace ShawnSandy\Gitcontent;
+namespace ShawnSandy\GitContent;
 
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Class Provider
  *
- * @package ShawnSandy\PkgStart
+ * @package ShawnSandy\GitContent
  */
-class GitcontentServicesProvider extends ServiceProvider
+class GitContentServicesProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
