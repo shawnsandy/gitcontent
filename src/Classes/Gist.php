@@ -74,6 +74,26 @@
             return $this->gist->update($data);
         }
 
+        /**
+         * @return Client
+         */
+        public function getClient()
+        {
+            return $this->client;
+        }
+
+        /**
+         * @param Client $client
+         */
+        public function setClient($client)
+        {
+            $this->client = $client;
+        }
+
+        /**
+         * @param null $id
+         * @return bool
+         */
         public function delete($id = NULL)
         {
             if (is_null($id)) return FALSE;
