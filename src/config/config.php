@@ -1,10 +1,8 @@
 <?php
 
-return [
-    'package' => [
-        'author' => "your name",
-        'email' => "your email",
-        'website' => "your website",
-        ]
-];
+    return [
+        'username' => 'your-github-username',
+        'password' => 'your-github-password',
+        'auth_method' => 'token',
+    ];
 

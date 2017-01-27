@@ -4,9 +4,10 @@
     "description": "Start Kit for laravel packages",
     "keywords": [
         "ShawnSandy",
-        "PkgStart"
+        "Git Content",
+        "CMS"
     ],
-    "homepage": "https://github.com/ShawnSandy/PkgStart",
+    "homepage": "https://github.com/shawnsandy/gitcontent/",
     "license": "MIT",
     "authors": [
         {
@@ -27,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ShawnSandy\\PkgStart\\": "src"
+            "ShawnSandy\\GitContent\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ShawnSandy\\PkgStart\\": "tests"
+            "ShawnSandy\\GitContent\\": "tests"
         }
     },
     "scripts": {

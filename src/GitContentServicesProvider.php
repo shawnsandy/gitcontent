@@ -46,7 +46,7 @@ class GitContentServicesProvider extends ServiceProvider
          * Package config
          */
         $this->publishes(
-            [__DIR__ . '/config/pagekit.php' => config_path('pagekit.php')],
+            [__DIR__ . '/config/config.php' => config_path('gitcontent.php')],
             'gitcontent-config'
         );
 
@@ -65,7 +65,7 @@ class GitContentServicesProvider extends ServiceProvider
     {
 
        $this->mergeConfigFrom(
-            __DIR__ . 'App/config/config.php', 'gitcontent'
+            __DIR__ . '/config/config.php', 'gitcontent'
         );
 
        /***  remove this line to uncomment and setup ****
