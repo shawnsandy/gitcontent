@@ -5,7 +5,9 @@
 @section('content')
 
     <div class="container">
-        @include('gitcontent::component.collection-item')
+
+        @include('gitcontent::component.content')
+
     </div>
 
 @endsection
