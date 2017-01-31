@@ -5,7 +5,9 @@
 @section('content')
 
     <div class="container">
-        @include('gitcontent::component.collection-item')
+        <div class="row">
+            @each('gitcontent::component.collection-item', $data, 'value')
+        </div>
     </div>
 
 @endsection
