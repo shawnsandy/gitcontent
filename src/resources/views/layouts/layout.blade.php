@@ -16,7 +16,10 @@
 </head>
 
 <body>
-
+<div class="container">
+    <h1>Git Content</h1>
+    <hr>
+</div>
 @yield('content')
 
 </body>

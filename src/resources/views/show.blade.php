@@ -6,7 +6,9 @@
 
     <div class="container">
 
-        @include('gitcontent::component.content')
+        <div class="row">
+            @include('gitcontent::component.content')
+        </div>
 
     </div>
 
