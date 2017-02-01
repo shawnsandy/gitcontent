@@ -5,12 +5,10 @@
     @foreach($data['files'] as $key => $value)
         <h3>Filename - {{ $key }}</h3>
         <hr>
-        <pre>
-            <code>
-                {{ $value['content'] }}
-            </code>
-        </pre>
+        <pre style="max-height: 400px; overflow: auto"><code>{{ $value['content'] }}</code></pre>
     @endforeach
-
+    <hr>
+    Author:
+    <hr>
 </div>
 

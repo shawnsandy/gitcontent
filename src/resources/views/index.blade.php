@@ -5,9 +5,15 @@
 @section('content')
 
     <div class="container">
+
         <div class="row">
-            @each('gitcontent::component.collection-item', $data, 'value')
+            <div class="col-md-12">
+               <h3 class="text-capitalize">Your {{ count($data) }} most recent gist</h3>
+                <hr>
+                @each('gitcontent::component.collection-item', $data, 'value')
+            </div>
         </div>
+
     </div>
 
 @endsection
