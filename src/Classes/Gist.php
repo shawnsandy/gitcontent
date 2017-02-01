@@ -67,7 +67,17 @@ class Gist extends GitClient
     {
         if (empty($data)) return FALSE;
 
-        return $this->api()->create($data);
+        $content = [
+            'files' => [
+                $data['filename'] => [
+                    'content' => $data['content']
+                ]
+            ],
+            'public' => $data['access'],
+            'description' => $data['description']
+        ];
+
+        return $this->api()->create($content);
     }
 
     /**

@@ -5,11 +5,14 @@
     use Cache;
     use App\Http\Controllers\Controller;
     use Illuminate\Http\Request;
+    use Log;
     use ShawnSandy\GitContent\Classes\Gist;
 
     class GistController extends Controller
     {
         protected $gist;
+
+        protected $gitCache = 'git-cache';
 
         /**
          * Gist constructor.
@@ -17,7 +20,6 @@
         public function __construct()
         {
             $this->gist = new Gist();
-
         }
 
         /**
@@ -26,11 +28,11 @@
         public function index()
         {
 
-            if (Cache::has('gistContent')):
-                $data = Cache::get('gistContent');
+            if (Cache::has($this->gitCache)):
+                $data = Cache::get($this->gitCache);
             else :
                 $data = $this->gist->all();
-                Cache::add('gistContent', $data, 600);
+                Cache::add($this->gitCache, $data, 600);
             endif;
 
             return view('gitcontent::index', compact('data'));
@@ -48,6 +50,10 @@
             return view('gitcontent::create');
         }
 
+        /**
+         * @param Request $request
+         * @return array
+         */
         public function store(Request $request)
         {
             $this->validate($request, [
@@ -56,8 +62,15 @@
                 'access' => 'required',
                 'content' => 'required'
             ]);
-//
-//            return back()->withInput();
+
+            try {
+                $this->gist->create($request->all());
+
+            } catch (\Exception $e) {
+                Log::error("Error saving new gist data");
+            }
+            Cache::forget($this->gitCache);
+            return redirect('/gist');
 
         }
 
