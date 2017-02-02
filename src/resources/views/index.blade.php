@@ -10,10 +10,10 @@
             <div class="col-md-12">
 
                <p class="text-capitalize text-right">
-                 <span class="badge"> Your {{ count($data) }} most recent gist</span>
+                 <span class="badge"> Your {{ count($gist) }} most recent gist</span>
                </p>
 
-                @each('gitcontent::component.collection-item', $data, 'value')
+                @each('gitcontent::component.collection-item', $gist, 'value')
             </div>
         </div>
 

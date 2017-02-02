@@ -54,16 +54,19 @@
         public function show($gistId)
         {
 
+
+
             $key = $this->cacheId . '-' . $gistId;
 
             if (Cache::has($key)):
-                $data = Cache::get($key);
+                $results = Cache::get($key);
             else :
-                $data = $this->gist->get($gistId);
-                Cache::add($key, $data, 600);
+                $results = $this->gist->get($gistId);
+                Cache::add($key, $results, 600);
             endif;
+            $gist = $this->gist->formatData($results);
 
-            return view('gitcontent::show', compact('data'));
+            return view('gitcontent::show', compact('gist'));
 
         }
 

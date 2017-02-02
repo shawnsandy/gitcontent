@@ -2,6 +2,7 @@
 
 namespace ShawnSandy\GitContent\Classes;
 
+use Carbon\Carbon;
 use Github\Client;
 use Github\ResultPager;
 
@@ -46,5 +47,33 @@ class GitClient
     public function previousPage(){
         return $this->previous ;
     }
+
+
+    public function formatData($data = [])
+    {
+
+        $dataArray = [
+            'ownerLogin' => $data['owner']['login'],
+            'ownerId' => $data['owner']['id'],
+            'ownerAvatar' => $data['owner']['avatar_url'],
+            'ownerUrl' => $data['owner']['html_url'],
+            'id' => $data['id'],
+            'description' => $data['description'],
+            'public' => $data['public'],
+            'files' => $data['files'],
+            'comments' => $data['comments'],
+            'commentsUrl' => $data['comments_url'],
+            'created_at' => $data['created_at'],
+            'created' => Carbon::parse($data['created_at'])->diffForHumans(),
+            'updated_at' => $data['updated_at'],
+            'updated' => Carbon::parse($data['updated_at'])->diffForHumans(),
+            'forks' => (isset($data['forks'])) ? $data['forks'] : null,
+            'history' => (isset($data['history'])) ? $data['history'] :  null ,
+        ];
+
+        return $dataArray;
+
+    }
+
 
 }
