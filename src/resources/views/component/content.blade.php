@@ -22,7 +22,7 @@ use Carbon\Carbon ;
 
     @endforeach
 
-    Posted {{ $gist['created'] }} by  {{ ucwords($gist['ownerLogin'] )}} Updated {{ $gist['updated_at'] }}
+    <i class="fa fa-clock-o"></i> {{ $gist['created'] }} <i class="fa fa-user"></i> {{ $gist['ownerLogin'] }}   <i class="fa fa-pencil"></i>  {{ $gist['updated'] }}
     <hr>
     @push('styles')
 
