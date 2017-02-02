@@ -20,8 +20,11 @@
     <h1><a href="/gist">Git Content</a></h1>
     <hr>
 </div>
-@yield('content')
 
+@yield('content')
+<footer>
+    <p class="text-center">GitContent for Laravel</p>
+</footer>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

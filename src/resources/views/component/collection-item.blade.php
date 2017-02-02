@@ -12,8 +12,9 @@
         <div class="gist-meta">
             <hr>
             <p>
-                Owner : {{ $value['owner']['login'] }} |
-                {{ count($value['files']) }} FILES |
+
+                Files {{ count($value['files']) }} |
+                Author : {{ $value['owner']['login'] }} |
                 Comments {{ ($value['comments'] > 0) ? $value['comments'] : 0 }} |
             </p>
         </div>
