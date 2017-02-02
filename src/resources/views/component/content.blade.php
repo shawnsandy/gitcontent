@@ -1,5 +1,5 @@
 @php
-use Carbon\Carbon ;
+    use Carbon\Carbon ;
 @endphp
 <div class="gist-collection">
 
@@ -14,15 +14,19 @@ use Carbon\Carbon ;
     @foreach($gist['files'] as $key => $item)
 
         <h4>
-            <a href="{{ $item['raw_url'] }}" target="_blank">{{ $key }}</a> <span class="badge">{{ $item['size'] / 1000 }} KB</span>
+            <a href="{{ $item['raw_url'] }}" target="_blank">{{ $key }}</a> <span class="badge">{{ $item['size'] / 1000 }}
+                KB</span>
         </h4>
         <pre style="" class="prettyprint linenums lang-{{ strtolower($item['language']) }}">
             {{ $item['content'] }}
         </pre>
 
     @endforeach
+    <p>
+        <i class="fa fa-clock-o"></i> {{ $gist['created'] }} <i class="fa fa-user"></i> {{ $gist['ownerLogin'] }} <i
+                class="fa fa-pencil"></i> {{ $gist['updated'] }}
+    </p>
 
-    <i class="fa fa-clock-o"></i> {{ $gist['created'] }} <i class="fa fa-user"></i> {{ $gist['ownerLogin'] }}   <i class="fa fa-pencil"></i>  {{ $gist['updated'] }}
     <hr>
     @push('styles')
 

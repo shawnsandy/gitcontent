@@ -13,7 +13,7 @@
                  <span class="badge"> Your {{ count($data) }} most recent gist</span>
                </p>
 
-                @each('gitcontent::component.collection-item', $data, 'value')
+                @each('gitcontent::component.collection-item', $data, 'gist')
             </div>
         </div>
 
