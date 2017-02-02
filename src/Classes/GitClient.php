@@ -13,7 +13,7 @@ class GitClient
     protected $paginate;
     protected $next;
     protected $previous;
-    protected $api = 'gist';
+    protected $apiMethod = 'gist';
 
     public function __construct()
     {
@@ -26,12 +26,12 @@ class GitClient
 
     public function api()
     {
-        return $this->client->api($this->api);
+        return $this->client->api($this->apiMethod);
     }
 
     public function paginate($method, $parameters = [])
     {
-        $api = $this->api($this->api);
+        $api = $this->api($this->apiMethod);
         $data = $this->paginate->fetch($api, $method, $parameters);
         $this->next = ($this->paginate->hasNext()) ? $this->paginate->fetchNext() : false;
         $this->previous = ($this->paginate->hasPrevious()) ? $this->paginate->fetchPrevious() : false;

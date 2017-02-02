@@ -19,7 +19,7 @@ class Gist extends GitClient
     public function __construct()
     {
         parent::__construct();
-        $this->api = 'gist';
+        $this->apiMethod = 'gist';
     }
 
     /**

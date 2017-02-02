@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ccead63b54a646c3da7bfe6713748d42",
-    "content-hash": "3fffc15b0abd62a7325ef04481e79ac2",
+    "hash": "fe6aab222d2c56b8d413aa80bc994b40",
+    "content-hash": "b79045ca733934cb36e590b4c929091a",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1036,6 +1036,33 @@
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
             "time": "2016-11-18 21:17:59"
+        },
+        {
+            "name": "tan-tan-kanarek/github-php-client",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tan-tan-kanarek/github-php-client.git",
+                "reference": "9103c68507b7eba0a51b13dc499838e2cf83cdfb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tan-tan-kanarek/github-php-client/zipball/9103c68507b7eba0a51b13dc499838e2cf83cdfb",
+                "reference": "9103c68507b7eba0a51b13dc499838e2cf83cdfb",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "client/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "description": "PHP client for the Github API",
+            "time": "2015-11-16 08:36:41"
         }
     ],
     "packages-dev": [
