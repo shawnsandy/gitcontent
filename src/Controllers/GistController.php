@@ -118,6 +118,7 @@
         }
 
         /**
+         * Delete gist
          * @param $gistId
          */
         public function delete($gistId)
@@ -130,7 +131,6 @@
             }
 
             Cache::forget($this->cacheId);
-
             redirect('/gist');
 
         }

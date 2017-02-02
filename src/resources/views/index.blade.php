@@ -8,8 +8,9 @@
 
         <div class="row">
             <div class="col-md-12">
-               <h3 class="text-capitalize">Your {{ count($data) }} most recent gist</h3>
-                <hr>
+
+               <p class="text-capitalize text-right">Your {{ count($data) }} most recent gist</p>
+
                 @each('gitcontent::component.collection-item', $data, 'value')
             </div>
         </div>

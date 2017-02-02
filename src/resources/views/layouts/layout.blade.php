@@ -17,7 +17,7 @@
 
 <body>
 <div class="container">
-    <h1>Git Content</h1>
+    <h1><a href="/gist">Git Content</a></h1>
     <hr>
 </div>
 @yield('content')
