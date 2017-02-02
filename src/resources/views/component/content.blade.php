@@ -12,12 +12,14 @@ use Carbon\Carbon ;
     <hr>
 
     @foreach($gist['files'] as $key => $item)
+
         <h4>
             <a href="{{ $item['raw_url'] }}" target="_blank">{{ $key }}</a> <span class="badge">{{ $item['size'] / 1000 }} KB</span>
         </h4>
-        <pre style="" class="prettyprint linenums lang-{{ $item['language'] }}">
+        <pre style="" class="prettyprint linenums lang-{{ strtolower($item['language']) }}">
             {{ $item['content'] }}
         </pre>
+
     @endforeach
 
     Posted {{ $gist['created'] }} by  {{ ucwords($gist['ownerLogin'] )}} Updated {{ $gist['updated_at'] }}

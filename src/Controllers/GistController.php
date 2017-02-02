@@ -84,7 +84,8 @@
             ]);
 
             try {
-                $this->gist->create($request->all());
+               $saved = $this->gist->create($request->all());
+               dd($saved);
 
             } catch (Exception $e) {
                 Log::error("Error saving new gist data : {$e->getMessage()}");
@@ -92,7 +93,7 @@
 
             Cache::forget($this->cacheId);
 
-            return redirect('/gist');
+            return redirect('/gist/'.$saved['id']);
 
         }
 
