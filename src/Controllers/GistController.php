@@ -1,18 +1,18 @@
 <?php
     namespace ShawnSandy\GitContent\Controllers;
 
-
-    use Cache;
-    use App\Http\Controllers\Controller;
-    use Illuminate\Http\Request;
     use Log;
+    use Cache;
+    use Exception;
+    use Illuminate\Http\Request;
+    use App\Http\Controllers\Controller;
     use ShawnSandy\GitContent\Classes\Gist;
 
     class GistController extends Controller
     {
         protected $gist;
 
-        protected $gitCache = 'git-cache';
+        protected $cacheId = 'git-cache';
 
         /**
          * Gist constructor.
@@ -28,26 +28,43 @@
         public function index()
         {
 
-            if (Cache::has($this->gitCache)):
-                $data = Cache::get($this->gitCache);
+            if (Cache::has($this->cacheId)):
+                $data = Cache::get($this->cacheId);
             else :
                 $data = $this->gist->all();
-                Cache::add($this->gitCache, $data, 600);
+                Cache::add($this->cacheId, $data, 600);
             endif;
 
             return view('gitcontent::index', compact('data'));
 
         }
 
-        public function show($gistId)
-        {
-            $data = $this->gist->get($gistId);
-            return view('gitcontent::show', compact('data')) ;
-        }
-
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
         public function create()
         {
             return view('gitcontent::create');
+        }
+
+        /**
+         * @param $gistId
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function show($gistId)
+        {
+
+            $key = $this->cacheId . '-' . $gistId;
+
+            if (Cache::has($key)):
+                $data = Cache::get($key);
+            else :
+                $data = $this->gist->get($gistId);
+                Cache::add($key, $data, 600);
+            endif;
+
+            return view('gitcontent::show', compact('data'));
+
         }
 
         /**
@@ -66,18 +83,56 @@
             try {
                 $this->gist->create($request->all());
 
-            } catch (\Exception $e) {
-                Log::error("Error saving new gist data");
+            } catch (Exception $e) {
+                Log::error("Error saving new gist data : {$e->getMessage()}");
             }
-            Cache::forget($this->gitCache);
+
+            Cache::forget($this->cacheId);
+
             return redirect('/gist');
 
         }
 
+        /**
+         * @param Request $request
+         * @param $gistId
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+         */
         public function update(Request $request, $gistId)
         {
+            $this->validate($request, [
+                'filename' => 'required',
+                'description' => 'required',
+                'access' => 'required',
+                'content' => 'required'
+            ]);
+
+            try {
+                $this->gist->update($gistId, $request->all());
+            } catch (Exception $e) {
+                Log::error("Error saving new gist data : {$e->getMessage()}");
+            }
+
+            return redirect('/show/' . $gistId);
 
         }
 
+        /**
+         * @param $gistId
+         */
+        public function delete($gistId)
+        {
+
+            try {
+                $this->gist->delete($gistId);
+            } catch (Exception $e) {
+                Log::error("Error saving deleting data : {$e->getMessage()}");
+            }
+
+            Cache::forget($this->cacheId);
+
+            redirect('/gist');
+
+        }
 
     }

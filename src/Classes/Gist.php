@@ -30,6 +30,11 @@ class Gist extends GitClient
         return $this->api()->all();
     }
 
+    /**
+     *
+     * @param array $parameters
+     * @return mixed
+     */
     public function paginateAll($parameters = [])
     {
         return $this->paginate('all', $parameters);
@@ -81,14 +86,15 @@ class Gist extends GitClient
     }
 
     /**
+     * @param $gistId
      * @param array $data
      * @return bool
      */
-    public function update($data = [])
+    public function update($gistId, $data = [])
     {
         if (empty($data)) return FALSE;
 
-        return $this->api()->update($data);
+        return $this->api()->update($gistId, $data);
     }
 
 
