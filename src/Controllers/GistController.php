@@ -32,6 +32,7 @@
         public function index()
         {
 
+
             $data = $this->gist->all();
 
             return view('gitcontent::index', compact('data'));

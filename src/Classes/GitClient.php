@@ -15,6 +15,7 @@ class GitClient
     protected $previous;
     protected $apiMethod = 'gist';
     protected $cacheId = 'git-cache';
+    protected $cacheTime = 60*24;
 
     public function __construct()
     {

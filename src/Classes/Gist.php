@@ -31,6 +31,7 @@
          */
         public function all()
         {
+
             if (Cache::has($this->cacheId)):
                 $data = Cache::get($this->cacheId);
             else :
