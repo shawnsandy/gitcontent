@@ -9,6 +9,7 @@
     namespace ShawnSandy\GitContent\Classes;
 
 
+    use Cache;
     use Carbon\Carbon;
 
     class GistComments extends GitClient
@@ -25,13 +26,20 @@
 
         public function all($gistId)
         {
-            $results = $this->comments->all($gistId);
+            $cacheId = $this->cacheId . '-' . 'comments-'.$gistId;
 
-            $formatted = collect($results)->map(function($items) {
+            if (Cache::has($cacheId)):
+                $results = Cache::get($cacheId);
+            else :
+                $results = $this->comments->all($gistId);
+                Cache::add($cacheId, $results, 600);
+            endif;
+
+            $formatted = collect($results)->map(function ($items) {
                 return $this->formatComment($items);
             });
 
-            return $formatted ;
+            return $formatted;
 
         }
 
@@ -45,7 +53,8 @@
             return $this->comments->update($gisId, $commentId, $comment);
         }
 
-        public function delete($gistID, $commentId){
+        public function delete($gistID, $commentId)
+        {
             return $this->comments->delete($gistID, $commentId);
         }
 
