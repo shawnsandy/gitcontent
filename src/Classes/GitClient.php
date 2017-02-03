@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Github\Client;
 use Github\ResultPager;
 
-
 class GitClient
 {
 
@@ -57,6 +56,7 @@ class GitClient
             'ownerId' => $data['owner']['id'],
             'ownerAvatar' => $data['owner']['avatar_url'],
             'ownerUrl' => $data['owner']['html_url'],
+            'gistUrl' => $data['owner']['html_url'],
             'id' => $data['id'],
             'description' => $data['description'],
             'public' => $data['public'],

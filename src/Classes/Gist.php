@@ -20,6 +20,8 @@ class Gist extends GitClient
     {
         parent::__construct();
         $this->apiMethod = 'gist';
+        $this->gist = $this->api();
+
     }
 
     /**
@@ -27,7 +29,13 @@ class Gist extends GitClient
      */
     public function all()
     {
-        return $this->api()->all();
+        $data = $this->api()->all();
+
+        $formatted = collect($data)->map(function($results) {
+            return $this->formatData($results);
+        });
+
+        return $formatted;
     }
 
     /**
@@ -42,14 +50,16 @@ class Gist extends GitClient
 
     /**
      * @param null $id
-     * @return bool
+     * @return array|bool|\Illuminate\Support\Collection
      */
     public function get($id = NULL)
     {
 
         if (is_null($id)) return FALSE;
 
-        return $this->api()->show($id);
+        $results = $this->gist->show($id);
+
+        return $this->formatData($results);
 
     }
 

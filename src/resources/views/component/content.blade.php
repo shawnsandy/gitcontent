@@ -14,8 +14,8 @@
     @foreach($gist['files'] as $key => $item)
 
         <h4>
-            <a href="{{ $item['raw_url'] }}" target="_blank">{{ $key }}</a> <span class="badge">{{ $item['size'] / 1000 }}
-                KB</span>
+            <i class="fa fa-file-text"></i> <a href="{{ $item['raw_url'] }}" target="_blank"> {{ $key }}</a>
+            <span class="badge">{{ round($item['size'] / 1000 , 1 )}} KB</span>
         </h4>
         <pre style="" class="prettyprint linenums lang-{{ strtolower($item['language']) }}">
             {{ $item['content'] }}
@@ -28,6 +28,7 @@
     </p>
 
     <hr>
+    <h3><i class="fa fa-comments"></i> Comments <span class="badge">{{ $gist['comments'] }}</span></h3>
     @push('styles')
 
     @endpush

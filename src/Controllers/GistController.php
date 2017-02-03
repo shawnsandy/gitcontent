@@ -63,7 +63,7 @@ class GistController extends Controller
             $results = $this->gist->get($gistId);
             Cache::add($key, $results, 600);
         endif;
-        $gist = $this->gist->formatData($results);
+        $gist = $results ;
 
         return view('gitcontent::show', compact('gist'));
 

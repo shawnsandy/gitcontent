@@ -17,6 +17,10 @@
         p {
             font-size: 16px;
         }
+
+        .gist-meta p {
+            color: gray;
+        }
     </style>
     @stack('styles')
 </head>
