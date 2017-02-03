@@ -76,4 +76,25 @@ class GitClient
     }
 
 
+    public function formatComment($comment = [])
+    {
+        $comments = [
+            'id' => $comment['id'],
+            'created_at' => $comment['created_at'],
+            'created' => Carbon::parse($comment['created_at'])->diffForHumans(),
+            'updated_at' => $comment['updated_at'],
+            'updated' => Carbon::parse($comment['created_at'])->diffForHumans(),
+            'body' => $comment['body'],
+            'userLogin' => $comment['user']['login'],
+            'userId' => $comment['user']['id'],
+            'userAvatar' => $comment['user']['avatar_url'],
+            'userUrl' => $comment['user']['html_url'],
+        ];
+
+        return $comments ;
+
+    }
+
+
+
 }

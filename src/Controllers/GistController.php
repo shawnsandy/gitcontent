@@ -7,10 +7,13 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use ShawnSandy\GitContent\Classes\Gist;
+use ShawnSandy\GitContent\Classes\GistComments;
 
 class GistController extends Controller
 {
     protected $gist;
+
+    protected $comments;
 
     protected $cacheId = 'git-cache';
 
@@ -20,6 +23,7 @@ class GistController extends Controller
     public function __construct()
     {
         $this->gist = new Gist();
+        $this->comments = new GistComments();
     }
 
     /**
@@ -65,7 +69,10 @@ class GistController extends Controller
         endif;
         $gist = $results ;
 
-        return view('gitcontent::show', compact('gist'));
+        $comments = $this->comments->all($gistId);
+        dump($comments);
+
+        return view('gitcontent::show', compact('gist', 'comments'));
 
     }
 
