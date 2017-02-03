@@ -83,7 +83,7 @@ class GistController extends Controller
     public function store(Request $request)
     {
         $saved = $this->save($request);
-        return redirect('/gist/' . $saved['id']); ;
+        return redirect('/gist/' . $saved['id']);
 
     }
 

@@ -34,6 +34,7 @@
      <div class="col-md-11 col-md-offset-1">
          <h3><i class="fa fa-comments"></i> Comments <span class="badge">{{ $gist['comments'] }}</span></h3>
 
+         @if($gist['comments'] != "0")
          <div class="panel panel-default">
 
 
@@ -55,6 +56,7 @@
                  @endforeach
              </div>
          </div>
+             @endif
 
      </div>
  </div>
