@@ -119,6 +119,8 @@
                 'content' => 'required'
             ]);
 
+
+
             try {
                 if (is_null($gistId)):
                     $saved = $this->gist->create($request->all());

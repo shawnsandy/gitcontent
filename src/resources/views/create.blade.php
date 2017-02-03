@@ -8,7 +8,7 @@
 
         <div class="col-md-12">
 
-            <form action="/gist" method="post">
+            <form action="/gist" method="post" id="gist-content">
                 {{ csrf_field() }}
                 @include('gitcontent::component.editor')
             </form>

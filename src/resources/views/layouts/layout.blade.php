@@ -21,8 +21,10 @@
         .gist-meta p {
             color: gray;
         }
+        .CodeMirror {border: 1px solid gray; font-size:13px}
     </style>
     @stack('styles')
+    @stack('inline-styles')
 </head>
 
 <body>
