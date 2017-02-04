@@ -18,7 +18,7 @@
 
 <div class="form-group col-md-12">
     <div id="git-edit" class="git-editor">
-        <h4>Code Snippet</h4>
+
         <div name="editor" id="editor" class="form-control"></div>
         <textarea style="display: none" name="content" id="content" cols="30" rows="10"></textarea>
     </div>
@@ -53,7 +53,10 @@
         js: "javascript",
         php: "php",
         md: "markdown",
-        txt: "text"
+        txt: "text",
+        xml: "xml",
+        sql: "sql",
+        svg: "svg"
     };
 
     console.log(exts);
@@ -82,13 +85,11 @@
             document.getElementById('gist-content').submit();
 
         }
-
     });
 
     resetBtn.addEventListener("click", function () {
         editor.setValue("", -1);
     });
-
 
     //file name
     var filename = document.getElementById('filename');
