@@ -32,7 +32,6 @@
         public function index()
         {
 
-
             $data = $this->gist->all();
 
             return view('gitcontent::index', compact('data'));
@@ -118,8 +117,6 @@
                 'access' => 'required',
                 'content' => 'required'
             ]);
-
-
 
             try {
                 if (is_null($gistId)):

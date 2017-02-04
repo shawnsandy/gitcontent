@@ -6,7 +6,12 @@
 
     <div class="container">
 
-        <div class="col-md-12">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3>Create Gist Snippet</h3>
+                <hr>
+            </div>
 
             <form action="/gist" method="post" id="gist-content">
                 {{ csrf_field() }}

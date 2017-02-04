@@ -1,17 +1,18 @@
 <div class="form-group col-md-12">
     <label for="description">Description</label>
-    <input type="text" name="description" class="form-control">
-</div>
-<div class="form-group col-md-6">
-    <label for="filename">File Name</label>
-    <input type="text" name="filename" class="form-control">
+    <input type="text" name="description" class="form-control" placeholder="Add a short description">
 </div>
 
-<div class="form-group col-md-6">
-    <label for="access">Public</label>
+<div class="form-group col-md-12">
+    <label for="filename">File Name</label>
+    <input id="filename" type="text" name="filename" class="form-control" placeholder="File Name (newfile.txt)">
+</div>
+
+<div class="form-group col-md-12">
+    <label for="access">This file is public or private</label>
     <select name="access" id="" class="form-control">
-        <option value="public">Public</option>
-        <option value="private">Private</option>
+        <option value="public">Public Gist</option>
+        <option value="private">Private Private</option>
     </select>
 </div>
 
@@ -47,6 +48,12 @@
 @push('inline_scripts')
 <script>
 
+    var exts = [{
+       "html": "html",
+        "js": "javascript",
+        "md": "markdown"
+    }];
+
     var config = document.getElementById('git-edit');
     var theme = config.dataset.theme ;
 
@@ -62,15 +69,30 @@
     var saveBtn = document.getElementById("save-button");
     var resetBtn = document.getElementById("reset-button");
     var content = document.getElementById('content');
+
     console.log(content);
     saveBtn.addEventListener("click", function(e){
+    if(editor.getValue()){
+            content.value = editor.getValue();
+//            alert(editor.getValue());
+            console.log(content.value);
+            document.getElementById('gist-content').submit();
 
-
+        }
 
     });
 
     resetBtn.addEventListener("click", function(){
         editor.setValue("", -1);
+    });
+
+    //file name
+    var filename = document.getElementById('filename');
+    filename.addEventListener('change', function(){
+        var val = filename.value.split('.') ;
+        var ext = val[val.length - 1];
+        console.log(ext.toLowerCase());
+        editor.getSession().setMode("ace/mode/"+ext);
     });
 
 </script>
