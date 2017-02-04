@@ -11,6 +11,7 @@
 
     use Cache;
     use Github\ResultPager;
+    use Log;
 
     class Gist extends GitClient
     {

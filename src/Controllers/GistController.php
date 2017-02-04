@@ -2,7 +2,6 @@
     namespace ShawnSandy\GitContent\Controllers;
 
     use Log;
-    use Cache;
     use Exception;
     use Illuminate\Http\Request;
     use App\Http\Controllers\Controller;
@@ -14,8 +13,6 @@
         protected $gist;
 
         protected $comments;
-
-        protected $cacheId = 'git-cache';
 
         /**
          * Gist constructor.
@@ -99,7 +96,7 @@
                 Log::error("Error saving deleting data : {$e->getMessage()}");
             }
 
-            Cache::forget($this->cacheId);
+            $this->gist->forgetItem($gistId);
             redirect('/gist');
 
         }
@@ -123,7 +120,9 @@
                     $saved = $this->gist->create($request->all());
                 else :
                     $saved = $this->gist->update($gistId, $request->all());
+                    $this->gist->cacheItem($saved, $gistId);
                 endif;
+                $this->gist->forgetCollection();
 
             } catch (Exception $e) {
                 Log::error("Error saving new gist data : {$e->getMessage()}");
