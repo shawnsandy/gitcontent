@@ -1,17 +1,17 @@
 @php
-    use Carbon\Carbon ;
+
 @endphp
 <div class="gist-collection">
 
     <h3 class="text-capitalize">
-        <img alt="@{{ $data['owner']['login']  }}" height="30" src="{{ $gist['ownerAvatar'] }}&amp;s=30" width="30">
+        <img alt="{{ '@'.$gist['ownerLogin'] }}" height="30" src="{{ $gist['ownerAvatar'] }}&amp;s=30" width="30">
         <a href="/">
             {{ (!empty($gist['description'] )) ? $gist['description'] : $gist['id'] }}
         </a>
     </h3>
     <hr>
 
-    @each('gitcontent::partials.file-content', $gist['files'], 'item')
+    @each('gitcontent::partials.gist-files', $gist['files'], 'item')
 
     <p>
         <i class="fa fa-clock-o"></i> {{ $gist['created'] }} <i class="fa fa-user"></i> {{ $gist['ownerLogin'] }} <i
@@ -28,24 +28,10 @@
             @if($gist['comments'] != "0")
                 <div class="panel panel-default">
 
-
                     <div class="panel-body">
 
-                        @foreach($comments as $comment)
-                            <h4 class="lead">
-                                <img alt="@{{ $comment['userLogin']  }}" height="30"
-                                     src="{{ $comment['userAvatar'] }}&amp;s=30" width="30">
+                        @each("gitcontent::partials.gist-comments", $comments, 'comment')
 
-                                {{ $comment['userLogin'] }} <i class="fa fa-clock-o"> {{ $comment['created'] }}</i>
-
-
-                            </h4>
-                            <hr>
-                            <p>
-                                {{ $comment['body'] }}
-                            </p>
-
-                        @endforeach
                     </div>
                 </div>
             @endif
