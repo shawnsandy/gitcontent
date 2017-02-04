@@ -48,21 +48,24 @@
 @push('inline_scripts')
 <script>
 
-    var exts = [{
-       "html": "html",
-        "js": "javascript",
-        "md": "markdown"
-    }];
+    var exts = {
+        html: "html",
+        js: "javascript",
+        php: "php",
+        md: "markdown",
+        txt: "text"
+    };
+
+    console.log(exts);
 
     var config = document.getElementById('git-edit');
-    var theme = config.dataset.theme ;
+    var theme = config.dataset.theme;
 
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/dawn");
     editor.getSession().setMode("ace/mode/javascript");
     editor.getSession().setUseWrapMode(true);
     editor.setAutoScrollEditorIntoView(true);
-
     editor.setOption("maxLines", 30);
     editor.setOption("minLines", 20);
 
@@ -71,8 +74,8 @@
     var content = document.getElementById('content');
 
     console.log(content);
-    saveBtn.addEventListener("click", function(e){
-    if(editor.getValue()){
+    saveBtn.addEventListener("click", function (e) {
+        if (editor.getValue()) {
             content.value = editor.getValue();
 //            alert(editor.getValue());
             console.log(content.value);
@@ -82,17 +85,20 @@
 
     });
 
-    resetBtn.addEventListener("click", function(){
+    resetBtn.addEventListener("click", function () {
         editor.setValue("", -1);
     });
 
+
     //file name
     var filename = document.getElementById('filename');
-    filename.addEventListener('change', function(){
-        var val = filename.value.split('.') ;
+    filename.addEventListener('change', function () {
+        var val = filename.value.split('.');
         var ext = val[val.length - 1];
         console.log(ext.toLowerCase());
-        editor.getSession().setMode("ace/mode/"+ext);
+        var mode = exts[ext.toLowerCase()];
+        console.log(mode);
+        editor.getSession().setMode("ace/mode/" + mode);
     });
 
 </script>
