@@ -64,7 +64,8 @@
          */
         public function store(Request $request)
         {
-            $saved = $this->save($request);
+            if($saved = $this->save($request))
+                $request->session()->flash('success', 'Your gist has been saved');
 
             return redirect('/gist/' . $saved['id']);
 
@@ -77,7 +78,8 @@
          */
         public function update(Request $request, $gistId)
         {
-            $saved = $this->save($request, $gistId);
+            if($saved = $this->save($request, $gistId))
+                $request->session()->flash('success', 'Your gist has been saved');
 
             return redirect('/gist/' . $saved['id']);
 
