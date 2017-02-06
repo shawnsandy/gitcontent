@@ -44,7 +44,7 @@
     <div class="col-md-12">
         <h1><a href="/gist">Git Content</a></h1>
         <hr>
-        @include('gitcontent::partials.messages');
+        @include('gitcontent::partials.messages')
     </div>
 
 </div>

@@ -7,18 +7,21 @@
     use App\Http\Controllers\Controller;
     use ShawnSandy\GitContent\Classes\Gist;
     use ShawnSandy\GitContent\Classes\GistComments;
+    use ShawnSandy\GitContent\Classes\GistRequest;
 
     class GistController extends Controller
     {
         protected $gist;
+        protected $client;
 
         protected $comments;
 
         /**
          * Gist constructor.
          */
-        public function __construct()
+        public function __construct(GistRequest $gist)
         {
+            $this->client = $gist;
             $this->gist = new Gist();
             $this->comments = new GistComments();
         }
@@ -26,10 +29,11 @@
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function index()
+        public function index($page = null)
         {
 
-            $data = $this->gist->all();
+            $data = $this->client->authenticate('token', 'cfb8f16f8bcf0a4f3039d4e94fc9e56ca80caaa4')
+                ->userGists('shawnsandy');
 
             return view('gitcontent::index', compact('data'));
 
@@ -51,6 +55,8 @@
         {
 
             $gist = $this->gist->get($gistId);
+
+            $this->gist = new Gist();
 
             $comments = $this->comments->all($gistId);
 

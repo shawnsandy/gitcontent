@@ -1,0 +1,66 @@
+<?php
+    /**
+     * Created by PhpStorm.
+     * User: Shawn
+     * Date: 2/5/2017
+     * Time: 10:59 PM
+     */
+
+    namespace ShawnSandy\GitContent\Classes;
+
+
+    use Carbon\Carbon;
+
+    trait ContentTrait
+    {
+
+        protected $cacheId;
+
+        public function formatComment($comment = [])
+        {
+            $comments = [
+                'id' => $comment['id'],
+                'created_at' => $comment['created_at'],
+                'created' => Carbon::parse($comment['created_at'])->diffForHumans(),
+                'updated_at' => $comment['updated_at'],
+                'updated' => Carbon::parse($comment['created_at'])->diffForHumans(),
+                'body' => $comment['body'],
+                'userLogin' => $comment['user']['login'],
+                'userId' => $comment['user']['id'],
+                'userAvatar' => $comment['user']['avatar_url'],
+                'userUrl' => $comment['user']['html_url'],
+            ];
+
+            return $comments;
+
+        }
+
+
+        public function formatData($data = [])
+        {
+            $dataArray = [
+                'ownerLogin' => $data['owner']['login'],
+                'ownerId' => $data['owner']['id'],
+                'ownerAvatar' => $data['owner']['avatar_url'],
+                'ownerUrl' => $data['owner']['html_url'],
+                'gistUrl' => $data['owner']['html_url'],
+                'id' => $data['id'],
+                'description' => $data['description'],
+                'public' => $data['public'],
+                'files' => $data['files'],
+                'comments' => $data['comments'],
+                'commentsUrl' => $data['comments_url'],
+                'created_at' => $data['created_at'],
+                'created' => Carbon::parse($data['created_at'])->diffForHumans(),
+                'updated_at' => $data['updated_at'],
+                'updated' => Carbon::parse($data['updated_at'])->diffForHumans(),
+                'forks' => (isset($data['forks'])) ? $data['forks'] : NULL,
+                'history' => (isset($data['history'])) ? $data['history'] : NULL,
+            ];
+
+            return $dataArray;
+
+        }
+
+
+    }

@@ -2,6 +2,7 @@
 
 namespace ShawnSandy\GitContent\Classes;
 
+use App;
 use Cache;
 use Carbon\Carbon;
 use Github\Client;
@@ -22,8 +23,9 @@ class GitClient
     public function __construct()
     {
 
-        $this->client = new Client();
-        $this->paginate = new ResultPager($this->client);
+        /* TODO Bind Client to service provider */
+        $this->client = App::make('Github\Client');
+        $this->paginate = App::make('Github\ResultPager', [$this->client]);
         $this->client->authenticate('cfb8f16f8bcf0a4f3039d4e94fc9e56ca80caaa4', NULL, Client::AUTH_HTTP_TOKEN);
 
     }
