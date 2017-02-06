@@ -34,6 +34,10 @@
             margin: 20px 0;
         }
 
+        .paginate {
+            padding: 20px 0 20px;
+        }
+
         footer {
             padding: 50px 0;
         }

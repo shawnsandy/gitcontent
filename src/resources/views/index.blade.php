@@ -7,16 +7,21 @@
     <div class="container">
 
         <div class="row">
+
+            <div class="paginate">
+                @include('gitcontent::partials.pagination')
+            </div>
+
             <div class="col-md-12">
-
-               <p class="text-capitalize text-right">
-                 <span class="badge"> Your {{ count($data) }} most recent gist</span>
-               </p>
-
                 @each('gitcontent::component.collection-item', $data, 'gist')
             </div>
-            @include('gitcontent::partials.navigation')
+
+            <div class="paginate">
+                @include('gitcontent::partials.pagination')
+            </div>
+
             <hr>
+
         </div>
 
     </div>
