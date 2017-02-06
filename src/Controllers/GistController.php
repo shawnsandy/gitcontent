@@ -1,6 +1,7 @@
 <?php
     namespace ShawnSandy\GitContent\Controllers;
 
+    use Cache;
     use Log;
     use Exception;
     use Illuminate\Http\Request;
@@ -13,6 +14,8 @@
     {
         protected $gist;
         protected $client;
+        protected $cacheId = 'git-cache';
+        protected $cacheTime = 60;
 
         protected $comments;
 
@@ -32,8 +35,14 @@
         public function index($page = null)
         {
 
+            if(Cache::has($this->cacheId)):
+                $data = Cache::get($this->cacheId);
+            else :
             $data = $this->client->authenticate('token', 'cfb8f16f8bcf0a4f3039d4e94fc9e56ca80caaa4')
-                ->userGists('shawnsandy');
+                ->userGists('shawnsandy', 10);
+            Cache::add($this->cacheId, $data, $this->cacheTime);
+            Log::info("Cache set");
+            endif;
 
             return view('gitcontent::index', compact('data'));
 
