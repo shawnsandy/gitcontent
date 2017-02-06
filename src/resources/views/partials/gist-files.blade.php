@@ -4,11 +4,9 @@
 </h4>
 
 <div id="git-edit" class="gist-editor">
-    <div id="code" style="" class="code" data-theme="dawn" data-lang="{{ strtolower($item['language']) }}" >
-        {{ $item['content'] }}
-    </div>
+    <div id="code" style="" class="code" data-theme="dawn" data-mode="{{ strtolower($item['language']) }}" >{{ $item['content'] }}</div>
 </div>
-
+<hr>
 
 @push('inline-styles')
 <style type="text/css" media="screen">
@@ -27,15 +25,11 @@
 @push('inline_scripts')
 <script>
   var editor;
-  var theme;
-  var mode;
 
   $('.code').each(function(){
         //var config = document.getElementById('git-edit');
-        theme = $(this).data('theme');
-        mode = $(this).data('mode');
-
-        console.log(mode + theme);
+       var theme = $(this).data('theme');
+       var  mode = $(this).data('mode');
 
         editor = ace.edit(this);
         editor.setTheme("ace/theme/" + theme);
