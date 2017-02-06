@@ -62,5 +62,29 @@
 
         }
 
+        /**
+         * @param $data
+         * @param $resultsPerPage
+         * @return array
+         */
+        public function paginate($data, $resultsPerPage)
+        {
+            $page = 1;
+
+            if (request()->has('page')):
+                $page = request()->get('page');
+            endif;
+
+            $pagination = [
+
+                'currentPage' => $page,
+                'nextPage' => $page + 1,
+                'previousPage' => $page - 1,
+                'lastPage' => (count($data) < $resultsPerPage) ? true : false
+
+            ];
+            return $pagination;
+        }
+
 
     }

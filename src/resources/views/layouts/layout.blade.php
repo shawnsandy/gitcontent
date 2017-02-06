@@ -33,6 +33,10 @@
             background-color: lightgray;
             margin: 20px 0;
         }
+
+        footer {
+            padding: 50px 0;
+        }
     </style>
     @stack('styles')
     @stack('inline-styles')

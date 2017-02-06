@@ -21,13 +21,14 @@
         /**
          * @param $username
          * @param int $resultsPerPage
-         * @return static|array
+         * @param null $page
+         * @return array|static
          */
-        public function userGists($username, $resultsPerPage = null)
+        public function userGists($username, $resultsPerPage = null, $page = null)
         {
 
             $this->setApiMethod('users/' . $username . '/gists')
-                ->setQuery(['per_page' => $resultsPerPage]);
+                ->setQuery(['page' => $page, 'per_page' => $resultsPerPage]);
 
             return $this->results();
 

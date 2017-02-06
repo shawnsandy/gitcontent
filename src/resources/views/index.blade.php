@@ -15,6 +15,8 @@
 
                 @each('gitcontent::component.collection-item', $data, 'gist')
             </div>
+            @include('gitcontent::partials.navigation')
+            <hr>
         </div>
 
     </div>
