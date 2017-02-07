@@ -4,7 +4,8 @@
 </h4>
 
 <div id="git-edit" class="gist-editor">
-    <div id="code-highlights" style="" class="code-highlights" data-theme="dawn" data-mode="{{ strtolower($item['language']) }}" >{{ $item['content'] }}</div>
+    <div id="code-highlights" style="" class="code-highlights" data-theme="dawn" data-readonly="true"
+         data-mode="{{ strtolower($item['language']) }}">{{ $item['content'] }}</div>
 </div>
 <hr>
 
@@ -24,13 +25,14 @@
 @endpush
 @push('inline_scripts')
 <script>
-  var editor;
+    var editor;
 
-  $('.code-highlights').each(function(){
+    $('.code-highlights').each(function () {
 
         //var config = document.getElementById('git-edit');
-       var theme = $(this).data('theme');
-       var  mode = $(this).data('mode');
+        var theme = $(this).data('theme');
+        var mode = $(this).data('mode');
+        var readonly = $(this).data('readonly');
 
         editor = ace.edit(this);
         editor.setTheme("ace/theme/" + theme);
@@ -39,10 +41,9 @@
         editor.setAutoScrollEditorIntoView(true);
         editor.setOption("maxLines", 30);
         editor.setOption("minLines", 10);
-        editor.setReadOnly(true);
+        editor.setReadOnly(readonly);
+
 
     })
-
-
 </script>
 @endpush
