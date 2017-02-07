@@ -39,8 +39,8 @@ class GistController extends Controller
         $resultsPerPage = 10;
 
         $cacheId = $this->cacheId;
-        if(request()->has('page'))
-            $cacheId = $cacheId.'-'.request()->get('page');
+        if (request()->has('page'))
+            $cacheId = $cacheId . '-' . request()->get('page');
 
         if (Cache::has($cacheId)):
             $data = Cache::get($cacheId);
@@ -80,7 +80,8 @@ class GistController extends Controller
     }
 
 
-    public function edit($gistId){
+    public function edit($gistId)
+    {
 
         $data = $this->gist->get($gistId);
 
@@ -164,6 +165,11 @@ class GistController extends Controller
         return $saved;
     }
 
+    public function forms(Request $request)
+    {
+        return $request->all();
+
+    }
 
 
 }

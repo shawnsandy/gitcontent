@@ -5,14 +5,14 @@
 
 <div class="form-group col-md-12">
     <label for="filename">File Name</label>
-    <input id="filename" type="text" name="filename" class="form-control" placeholder="File Name (newfile.txt)" value="{{ old('filename', (isset($data['filename']) ? $data['filename']: '')) }}">
+    <input id="filename" type="text" name="filename" class="form-control" placeholder="File Name (newfile.txt)" value="{{ old('filename', (isset($data['files']['filename']) ? $data['files']['filename']: '')) }}">
 </div>
 
 <div class="form-group col-md-12">
     <label for="access">This file is public or private</label>
     <select name="access" id="" class="form-control">
-        <option value="{{ old('filename', (isset($data['public']) ? $data['public']: '')) }}">
-            {{ old('filename', (isset($data['public']) ? $data['public']: '')) }}
+        <option value="{{ old('public', (isset($data['public']) ? $data['public']: '')) }}">
+            {{ old('public', (isset($data['public']) ? $data['public']: '')) }}
         </option>
         <option value="public">Public Gist</option>
         <option value="private">Private Private</option>
@@ -21,7 +21,7 @@
 
 <div class="form-group col-md-12">
     <div id="git-edit" class="git-editor">
-        <div name="editor" id="editor" class="form-control">{{ old('content', (isset($data['files']['content']) ? $data['files']['content']: '')) }}</div>
+        <div name="editor" id="editor" class="form-control">{{ old('content', (isset($data['content']) ? $data['content']: '')) }}</div>
         <textarea style="display: none" name="content" id="content" cols="30" rows="10"></textarea>
     </div>
 </div>
