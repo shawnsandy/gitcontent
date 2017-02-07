@@ -1,16 +1,19 @@
 <div class="form-group col-md-12">
     <label for="description">Description</label>
-    <input type="text" name="description" class="form-control" placeholder="Add a short description">
+    <input type="text" name="description" class="form-control" placeholder="Add a short description" value="{{ old('description', (isset($data['description']) ? $data['description'] : '')) }}">
 </div>
 
 <div class="form-group col-md-12">
     <label for="filename">File Name</label>
-    <input id="filename" type="text" name="filename" class="form-control" placeholder="File Name (newfile.txt)">
+    <input id="filename" type="text" name="filename" class="form-control" placeholder="File Name (newfile.txt)" value="{{ old('filename', (isset($data['filename']) ? $data['filename']: '')) }}">
 </div>
 
 <div class="form-group col-md-12">
     <label for="access">This file is public or private</label>
     <select name="access" id="" class="form-control">
+        <option value="{{ old('filename', (isset($data['public']) ? $data['public']: '')) }}">
+            {{ old('filename', (isset($data['public']) ? $data['public']: '')) }}
+        </option>
         <option value="public">Public Gist</option>
         <option value="private">Private Private</option>
     </select>
@@ -18,8 +21,7 @@
 
 <div class="form-group col-md-12">
     <div id="git-edit" class="git-editor">
-
-        <div name="editor" id="editor" class="form-control"></div>
+        <div name="editor" id="editor" class="form-control">{{ old('content', (isset($data['files']['content']) ? $data['files']['content']: '')) }}</div>
         <textarea style="display: none" name="content" id="content" cols="30" rows="10"></textarea>
     </div>
 </div>
@@ -64,6 +66,7 @@
     var config = document.getElementById('git-edit');
     var theme = config.dataset.theme;
 
+
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/dawn");
     editor.getSession().setMode("ace/mode/javascript");
@@ -71,6 +74,7 @@
     editor.setAutoScrollEditorIntoView(true);
     editor.setOption("maxLines", 30);
     editor.setOption("minLines", 20);
+
 
     var saveBtn = document.getElementById("save-button");
     var resetBtn = document.getElementById("reset-button");

@@ -5,15 +5,12 @@
 @section('content')
 
     <div class="container">
-
         <div class="row">
-            <div class="col-md-12">
-                @include('gitcontent::partials.navigation')
-                @include('gitcontent::component.content')
-            </div>
-
+            @include('gitcontent::component.editor')
+            {{ dump($data) }}
         </div>
 
     </div>
 
 @endsection
+

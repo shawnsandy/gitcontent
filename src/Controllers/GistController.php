@@ -73,11 +73,18 @@ class GistController extends Controller
 
         $gist = $this->gist->get($gistId);
 
-        $this->gist = new Gist();
-
         $comments = $this->comments->all($gistId);
 
-        return view('gitcontent::show', compact('gist', 'comments'));
+        return view('gitcontent::show', compact('gist', 'comments', 'gistId'));
+
+    }
+
+
+    public function edit($gistId){
+
+        $data = $this->gist->get($gistId);
+
+        return view('gitcontent::edit', compact('gistId', 'data'));
 
     }
 

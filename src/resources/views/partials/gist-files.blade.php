@@ -4,7 +4,7 @@
 </h4>
 
 <div id="git-edit" class="gist-editor">
-    <div id="code" style="" class="code" data-theme="dawn" data-mode="{{ strtolower($item['language']) }}" >{{ $item['content'] }}</div>
+    <div id="code-highlights" style="" class="code-highlights" data-theme="dawn" data-mode="{{ strtolower($item['language']) }}" >{{ $item['content'] }}</div>
 </div>
 <hr>
 
@@ -26,7 +26,8 @@
 <script>
   var editor;
 
-  $('.code').each(function(){
+  $('.code-highlights').each(function(){
+
         //var config = document.getElementById('git-edit');
        var theme = $(this).data('theme');
        var  mode = $(this).data('mode');
@@ -39,6 +40,7 @@
         editor.setOption("maxLines", 30);
         editor.setOption("minLines", 10);
         editor.setReadOnly(true);
+
     })
 
 
