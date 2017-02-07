@@ -33,14 +33,16 @@
         var theme = $(this).data('theme');
         var mode = $(this).data('mode');
         var readonly = $(this).data('readonly');
+        var maxLines = $(this).data('maxLines') ? $(this).data('maxLines') : 40;
+        var minLines = $(this).data('minLines') ? $(this).data('minLines') : 10;
 
         editor = ace.edit(this);
         editor.setTheme("ace/theme/" + theme);
         editor.getSession().setMode("ace/mode/" + mode);
         editor.getSession().setUseWrapMode(true);
         editor.setAutoScrollEditorIntoView(true);
-        editor.setOption("maxLines", 30);
-        editor.setOption("minLines", 10);
+        editor.setOption("maxLines", maxLines);
+        editor.setOption("minLines", minLines);
         editor.setReadOnly(readonly);
 
 

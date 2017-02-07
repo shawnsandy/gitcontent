@@ -9,7 +9,7 @@
         <div class="row">
 
             <div class="paginate">
-                @include('gitcontent::partials.pagination')
+                @include('gitcontent::partials.navigation')
             </div>
 
             <div class="col-md-12">

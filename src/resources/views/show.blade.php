@@ -11,7 +11,6 @@
                 @include('gitcontent::partials.navigation')
                 @include('gitcontent::component.content')
             </div>
-
         </div>
 
     </div>
