@@ -6,8 +6,7 @@
 
     <div class="container">
         <div class="row">
-            @include('gitcontent::component.editor')
-            {{ dump($data) }}
+            @include('gitcontent::component.update')
         </div>
 
     </div>

@@ -1,3 +1,8 @@
+<div class="col-md-12">
+    @include('gitcontent::component.editor')
+    {{ dump($data) }}
+
+</div>
 <div class="form-group col-md-12">
     <label for="description">Description</label>
     <input type="text" name="description" class="form-control" placeholder="Add a short description" value="{{ old('description', (isset($data['description']) ? $data['description'] : '')) }}">
@@ -108,3 +113,5 @@
 
 </script>
 @endpush
+
+
