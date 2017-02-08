@@ -95,9 +95,18 @@ class GistController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'filename' => 'required',
+            'description' => 'required',
+            'public' => 'required',
+            'content' => 'required'
+        ]);
 
-        if ($saved = $this->save($request))
+        if ($saved = $this->save($request)):
             $request->session()->flash('success', 'Your gist has been saved');
+        else :
+            back()->with('error', 'failed to save');
+        endif ;
 
         return redirect('/gist/' . $saved['id']);
 
@@ -110,9 +119,18 @@ class GistController extends Controller
      */
     public function update(Request $request, $gistId)
     {
-        dd($request->all());
-        if ($saved = $this->save($request, $gistId))
+        // dd($request->all());
+        $this->validate($request, [
+            'files' => 'required',
+            'description' => 'required',
+            'public' => 'required',
+        ]);
+
+        if ($saved = $this->save($request, $gistId)) :
             $request->session()->flash('success', 'Your gist has been saved');
+        else :
+            $request->session()->flash('error', 'Sorry an error occurred while saving your gist');
+        endif;
 
         return redirect('/gist/' . $saved['id']);
 
@@ -121,6 +139,7 @@ class GistController extends Controller
     /**
      * Delete gist
      * @param $gistId
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function delete($gistId)
     {
@@ -128,11 +147,13 @@ class GistController extends Controller
         try {
             $this->gist->delete($gistId);
         } catch (Exception $e) {
-            Log::error("Error saving deleting data : {$e->getMessage()}");
+            $msg = "Error saving deleting data : {$e->getMessage()}";
+            Log::error($msg);
+            return back()->with('error', $msg);
         }
 
         $this->gist->forgetItem($gistId);
-        redirect('/gist');
+        return redirect('/gist');
 
     }
 
@@ -143,24 +164,21 @@ class GistController extends Controller
      */
     private function save(Request $request, $gistId = NULL)
     {
-        $this->validate($request, [
-            'filename' => 'required',
-            'description' => 'required',
-            'access' => 'required',
-            'content' => 'required'
-        ]);
+
 
         try {
             if (is_null($gistId)):
                 $saved = $this->gist->create($request->all());
             else :
                 $saved = $this->gist->update($gistId, $request->all());
+                $this->gist->forgetItem($gistId);
                 $this->gist->cacheItem($saved, $gistId);
             endif;
             $this->gist->forgetCollection();
 
         } catch (Exception $e) {
             Log::error("Error saving new gist data : {$e->getMessage()}");
+            return back()->with('error', $e->getMessage());
         }
 
         return $saved;
