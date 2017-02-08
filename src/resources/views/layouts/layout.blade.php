@@ -37,6 +37,7 @@
         .paginate {
             padding: 20px 0 20px;
         }
+
         .form-control {
             border-radius: 0;
         }
@@ -51,13 +52,13 @@
 
 <body>
 <div class="container">
-
-    <div class="col-md-12">
-        <h1><a href="/gist">Git Content</a></h1>
-        <hr>
-        @include('gitcontent::partials.messages')
+    <div class="row">
+        <div class="col-md-12">
+            <h1><a href="/gist">Git Content</a></h1>
+            <hr>
+            @include('gitcontent::partials.messages')
+        </div>
     </div>
-
 </div>
 
 @yield('content')
