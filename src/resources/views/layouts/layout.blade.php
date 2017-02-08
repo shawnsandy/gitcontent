@@ -37,6 +37,9 @@
         .paginate {
             padding: 20px 0 20px;
         }
+        .form-control {
+            border-radius: 0;
+        }
 
         footer {
             padding: 50px 0;

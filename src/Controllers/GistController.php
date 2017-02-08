@@ -110,6 +110,7 @@ class GistController extends Controller
      */
     public function update(Request $request, $gistId)
     {
+        dd($request->all());
         if ($saved = $this->save($request, $gistId))
             $request->session()->flash('success', 'Your gist has been saved');
 
