@@ -1,8 +1,3 @@
-<div class="col-md-12">
-    @include('gitcontent::component.editor')
-    {{ dump($data) }}
-
-</div>
 <div class="form-group col-md-12">
     <label for="description">Description</label>
     <input type="text" name="description" class="form-control" placeholder="Add a short description" value="{{ old('description', (isset($data['description']) ? $data['description'] : '')) }}">
@@ -23,13 +18,15 @@
         <option value="private">Private Private</option>
     </select>
 </div>
-
+@foreach($data['files'] as $data)
 <div class="form-group col-md-12">
     <div id="git-edit" class="git-editor">
-        <div name="editor" id="editor" class="form-control">{{ old('content', (isset($data['content']) ? $data['content']: '// code')) }}</div>
+        <div class="code-editor" data-theme="dawn" data-readonly="true" data-mode="{{ strtolower($data['language']) }}">{{ old('content', (isset($data['content']) ? $data['content']: '// code')) }}</div>
         <textarea style="display: none" name="content" id="content" cols="30" rows="10"></textarea>
     </div>
 </div>
+
+@endforeach
 
 <div class="col-md-12">
     <button id="save-button" type="button" class="btn btn-primary btn-lg"> Save Gist</button>
@@ -49,9 +46,11 @@
     }
 </style>
 @endpush
+
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
 @endpush
+
 @push('inline_scripts')
 <script>
 
@@ -65,20 +64,27 @@
         sql: "sql",
         svg: "svg"
     };
-
-    console.log(exts);
-
-    var config = document.getElementById('git-edit');
-    var theme = config.dataset.theme;
+ console.log('something...');
 
 
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/dawn");
-    editor.getSession().setMode("ace/mode/javascript");
-    editor.getSession().setUseWrapMode(true);
-    editor.setAutoScrollEditorIntoView(true);
-    editor.setOption("maxLines", 30);
-    editor.setOption("minLines", 20);
+    var editor;
+
+    $(".code-editor").each(function(){
+
+        console.log(this);
+        var theme = $(this).data('theme');
+        var mode = $(this).data('mode');
+        var readonly = $(this).data('readonly');
+        editor = ace.edit(this);
+        editor.setTheme("ace/theme/"+theme);
+        editor.setReadOnly(readonly);
+        editor.getSession().setMode("ace/mode/"+mode);
+        editor.getSession().setUseWrapMode(true);
+        editor.setAutoScrollEditorIntoView(true);
+        editor.setOption("maxLines", 40);
+        editor.setOption("minLines", 5);
+
+    });
 
 
     var saveBtn = document.getElementById("save-button");
