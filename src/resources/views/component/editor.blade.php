@@ -10,7 +10,7 @@
 
 <div class="form-group col-md-12">
     <label for="access">This file is public or private</label>
-    <select name="access" id="" class="form-control">
+    <select name="public" id="" class="form-control">
         <option value="{{ old('public', (isset($data['public']) ? $data['public']: '')) }}">
             {{ old('public', (isset($data['public']) ? $data['public']: '')) }}
         </option>
@@ -21,7 +21,7 @@
 
 <div class="form-group col-md-12">
     <div id="git-edit" class="git-editor">
-        <div name="editor" id="editor" class="form-control">{{ old('content', (isset($data['content']) ? $data['content']: '// code')) }}</div>
+        <div name="editor" id="editor" class="form-control">{{ old('content', (isset($data['content']) ? $data['content']: '')) }}</div>
         <textarea style="display: none" name="content" id="content" cols="30" rows="10"></textarea>
     </div>
 </div>
@@ -62,7 +62,6 @@
     };
 
     console.log(exts);
-
     var config = document.getElementById('git-edit');
     var theme = config.dataset.theme;
 
