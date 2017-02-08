@@ -130,7 +130,7 @@
         {
             if (is_null($id)) return FALSE;
 
-            return $this->api()->delete($id);
+            return $this->api()->remove($id);
         }
 
 

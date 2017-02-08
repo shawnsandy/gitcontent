@@ -1,3 +1,4 @@
+
 @if(Session::has('error'))
     <p class="alert alert-error">{{ Session::get('error') }}</p>
 @endif

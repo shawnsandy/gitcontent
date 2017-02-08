@@ -132,7 +132,7 @@ class GistController extends Controller
             $request->session()->flash('error', 'Sorry an error occurred while saving your gist');
         endif;
 
-        return redirect('/gist/' . $saved['id']);
+        return redirect('/gist/' . $saved['id'] .'/edit');
 
     }
 
@@ -141,13 +141,13 @@ class GistController extends Controller
      * @param $gistId
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete($gistId)
+    public function destroy($gistId)
     {
 
         try {
             $this->gist->delete($gistId);
         } catch (Exception $e) {
-            $msg = "Error saving deleting data : {$e->getMessage()}";
+            $msg = "Error deleting data : {$e->getMessage()}";
             Log::error($msg);
             return back()->with('error', $msg);
         }
