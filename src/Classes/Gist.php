@@ -24,7 +24,6 @@
             parent::__construct();
             $this->apiMethod = 'gist';
             $this->gist = $this->api();
-
         }
 
         /**
@@ -32,7 +31,6 @@
          */
         public function all()
         {
-
             if (Cache::has($this->cacheId)):
                 $data = Cache::get($this->cacheId);
             else :
@@ -103,7 +101,7 @@
                         'content' => $data['content']
                     ]
                 ],
-                'public' => $data['access'],
+                'public' => $data['public'],
                 'description' => $data['description']
             ];
 
