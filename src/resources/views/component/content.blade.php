@@ -5,9 +5,9 @@
 
     <h3 class="text-capitalize">
         <img alt="{{ '@'.$gist['ownerLogin'] }}" height="30" src="{{ $gist['ownerAvatar'] }}&amp;s=30" width="30">
-        <a href="/">
+
             {{ (!empty($gist['description'] )) ? $gist['description'] : $gist['id'] }}
-        </a>
+
     </h3>
     <hr>
 
