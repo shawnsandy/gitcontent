@@ -11,14 +11,15 @@ use Log;
 
 class GitClient
 {
+    use ContentTrait ;
 
     protected $client;
     protected $paginate;
     protected $next;
     protected $previous;
     protected $apiMethod = 'gist';
-    protected $cacheId = 'git-cache';
-    protected $cacheTime = 60;
+//    protected $cacheId = 'git-cache';
+//    protected $cacheTime = 60;
 
     public function __construct()
     {
@@ -53,52 +54,6 @@ class GitClient
         return $this->previous ;
     }
 
-
-    public function formatData($data = [])
-    {
-
-        $dataArray = [
-            'ownerLogin' => $data['owner']['login'],
-            'ownerId' => $data['owner']['id'],
-            'ownerAvatar' => $data['owner']['avatar_url'],
-            'ownerUrl' => $data['owner']['html_url'],
-            'gistUrl' => $data['owner']['html_url'],
-            'id' => $data['id'],
-            'description' => $data['description'],
-            'public' => $data['public'],
-            'files' => $data['files'],
-            'comments' => $data['comments'],
-            'commentsUrl' => $data['comments_url'],
-            'created_at' => $data['created_at'],
-            'created' => Carbon::parse($data['created_at'])->diffForHumans(),
-            'updated_at' => $data['updated_at'],
-            'updated' => Carbon::parse($data['updated_at'])->diffForHumans(),
-            'forks' => (isset($data['forks'])) ? $data['forks'] : null,
-            'history' => (isset($data['history'])) ? $data['history'] :  null ,
-        ];
-
-        return $dataArray;
-
-    }
-
-    public function formatComment($comment = [])
-    {
-        $comments = [
-            'id' => $comment['id'],
-            'created_at' => $comment['created_at'],
-            'created' => Carbon::parse($comment['created_at'])->diffForHumans(),
-            'updated_at' => $comment['updated_at'],
-            'updated' => Carbon::parse($comment['created_at'])->diffForHumans(),
-            'body' => $comment['body'],
-            'userLogin' => $comment['user']['login'],
-            'userId' => $comment['user']['id'],
-            'userAvatar' => $comment['user']['avatar_url'],
-            'userUrl' => $comment['user']['html_url'],
-        ];
-
-        return $comments ;
-
-    }
 
     public function forgetCollection() {
         Cache::forget($this->cacheId);

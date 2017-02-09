@@ -14,7 +14,10 @@
     trait ContentTrait
     {
 
-        protected $cacheId;
+
+
+        protected $cacheId = 'git-cache';
+        protected $cacheTime = 60;
 
         public function formatComment($comment = [])
         {
@@ -43,7 +46,7 @@
                 'ownerId' => $data['owner']['id'],
                 'ownerAvatar' => $data['owner']['avatar_url'],
                 'ownerUrl' => $data['owner']['html_url'],
-                'gistUrl' => $data['owner']['html_url'],
+                'gistUrl' => $data['html_url'],
                 'id' => $data['id'],
                 'description' => $data['description'],
                 'public' => $data['public'],
@@ -80,9 +83,10 @@
                 'currentPage' => $page,
                 'nextPage' => $page + 1,
                 'previousPage' => $page - 1,
-                'lastPage' => (count($data) < $resultsPerPage) ? true : false
+                'lastPage' => (count($data) < $resultsPerPage) ? TRUE : FALSE
 
             ];
+
             return $pagination;
         }
 

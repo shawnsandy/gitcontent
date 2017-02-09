@@ -6,8 +6,8 @@
     <h3 class="text-capitalize">
         <img alt="{{ '@'.$gist['ownerLogin'] }}" height="30" src="{{ $gist['ownerAvatar'] }}&amp;s=30" width="30">
 
-            {{ (!empty($gist['description'] )) ? $gist['description'] : $gist['id'] }}
-
+       {{ (!empty($gist['description'] )) ? $gist['description'] : $gist['id'] }}
+           <small><a href="{{ $gist['gistUrl'] }}" target="_blank">View </a></small>
     </h3>
     <hr>
 
