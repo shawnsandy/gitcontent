@@ -64,7 +64,6 @@
         var filename = $(this).data('filename') ? $(this).data('filename') : 'new';
         var content = document.getElementById('content-' + filename);
 
-        console.log(content);
         editor = ace.edit(this);
         editor.setTheme('ace/theme/' + theme);
         editor.setReadOnly(readonly);

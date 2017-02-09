@@ -31,7 +31,7 @@
                            placeholder="Enter the filename (readme.md) and click save">
                     <span class="input-group-addon text-uppercase" id="">
                       <button type="submit" class="btn btn-default btn-sm btn-link ">
-                        <span class="h5"><i class="fa fa-plus"></i> Add New File</span>
+                        <span class="h5"><i class="fa fa-plus"></i> Attach New File</span>
                       </button>
                     </span>
                 </p>
@@ -44,8 +44,9 @@
         <div class="col-md-12">
 
             <p class="text-right">
-                <button id="save-button" type="submit" class="btn btn-success text-capitalize"><i
-                            class="fa fa-chevron-right"></i> Update {{ $data['description'] }}</button>
+                <button id="save-button" type="submit" class="btn btn-success text-capitalize">
+                   <span class="lead"><i class="fa fa-chevron-right"></i> Update {{ $data['description'] }}</span>
+                </button>
             </p>
 
         </div>
