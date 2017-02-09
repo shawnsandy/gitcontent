@@ -41,6 +41,9 @@
         .form-control {
             border-radius: 0;
         }
+        .hide {
+            display: none;
+        }
 
         footer {
             padding: 50px 0;

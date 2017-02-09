@@ -6,6 +6,7 @@
 
     <div class="container">
         <div class="row">
+            @include("gitcontent::partials.navigation")
             <form action="/gist/{{ $data['id'] }}" method="post" id="gist-content">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
