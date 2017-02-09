@@ -43,7 +43,7 @@
 
         <div class="col-md-12">
 
-            <p class="text-right">
+            <p class="text-left">
                 <button id="save-button" type="submit" class="btn btn-success text-capitalize">
                    <span class="lead"><i class="fa fa-chevron-right"></i> Update {{ $data['description'] }}</span>
                 </button>

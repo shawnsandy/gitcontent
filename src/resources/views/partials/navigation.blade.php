@@ -6,7 +6,7 @@
             @if(Route::currentRouteName() == 'gist.edit')
 
                 <a href="/delete-gist/{{ $gistId }}" class="btn btn-danger delete-btn hide">Confirm Delete</a>
-                <button href="" class="btn btn-primary delete-gist">Delete</button>
+                <button href="" class="btn btn-warning delete-gist">Delete</button>
             @else
                 <a href="/gist/{{ $gistId }}/edit" class="btn btn-default">Edit</a>
             @endif
