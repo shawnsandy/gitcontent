@@ -2,14 +2,14 @@
 <div class="panel panel-default">
     <div class="panel-body">
 
-        <h2 class="text-capitalize">
+        <h3 class="text-capitalize">
             @if(isset($gist['ownerAvatar']))
-            <img alt="@shawnsandy" height="30" src="{{ $gist['ownerAvatar'] or null }}&amp;s=60" width="30">
+            <img alt="@shawnsandy" height="25px" src="{{ $gist['ownerAvatar'] or null }}&amp;s=60" width="25">
             @endif
             <a href="/gist/{{ $gist['id'] }}">
                 {{ (!empty($gist['description'] )) ? $gist['description'] : $gist['id'] }}
             </a>
-        </h2>
+        </h3>
 
         <div class="gist-meta">
             <hr>

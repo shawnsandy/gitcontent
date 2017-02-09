@@ -97,16 +97,18 @@ class GistController extends Controller
     {
         $this->validate($request, [
             'filename' => 'required',
-            'description' => 'required',
-            'public' => 'required',
-            'content' => 'required'
+            'description' => 'sometimes|required',
+            'public' => 'sometimes|required',
+            'content' => 'sometimes|required'
         ]);
 
-        if ($saved = $this->save($request)):
+        $data = $request->all();
+
+        if ($saved = $this->save($data)):
             $request->session()->flash('success', 'Your gist has been saved');
         else :
             back()->with('error', 'failed to save');
-        endif ;
+        endif;
 
         return redirect('/gist/' . $saved['id']);
 
@@ -121,18 +123,34 @@ class GistController extends Controller
     {
         // dd($request->all());
         $this->validate($request, [
-            'files' => 'required',
-            'description' => 'required',
-            'public' => 'required',
+            'files' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'public' => 'sometimes|required',
+            'content' => 'sometimes|required',
         ]);
 
-        if ($saved = $this->save($request, $gistId)) :
+
+        $data = $request->all();
+        dump($data);
+        if ($request->exists('new-file')):
+            // parse a create am array to handle new file
+            $data = [
+                'files' => [
+                    $data['files'] => [
+                        'content' => isset($data['content']) ? $data['content'] : "// add you code here"
+                    ]
+                ]
+                ];
+            dd($data);
+        endif ;
+
+        if ($saved = $this->save($data, $gistId)) :
             $request->session()->flash('success', 'Your gist has been saved');
         else :
             $request->session()->flash('error', 'Sorry an error occurred while saving your gist');
         endif;
 
-        return redirect('/gist/' . $saved['id'] .'/edit');
+        return redirect('/gist/' . $saved['id'] . '/edit');
 
     }
 
@@ -158,22 +176,24 @@ class GistController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param array $data
      * @param null $gistId
      * @return bool
+     * @internal param Request $request
      */
-    private function save(Request $request, $gistId = NULL)
+    private function save($data = [], $gistId = NULL)
     {
 
 
         try {
             if (is_null($gistId)):
-                $saved = $this->gist->create($request->all());
+                $saved = $this->gist->create($data);
             else :
-                $saved = $this->gist->update($gistId, $request->all());
+                $saved = $this->gist->update($gistId, $data);
                 $this->gist->forgetItem($gistId);
                 $this->gist->cacheItem($saved, $gistId);
             endif;
+
             $this->gist->forgetCollection();
 
         } catch (Exception $e) {

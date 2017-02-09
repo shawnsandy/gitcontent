@@ -10,8 +10,8 @@
 
 
     use Cache;
-    use Github\ResultPager;
-    use Log;
+//    use Github\ResultPager;
+//    use Log;
 
     class Gist extends GitClient
     {
@@ -132,6 +132,5 @@
 
             return $this->api()->remove($id);
         }
-
 
     }

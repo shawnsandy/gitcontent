@@ -61,7 +61,6 @@
         svg: "svg"
     };
 
-    console.log(exts);
     var config = document.getElementById('git-edit');
     var theme = config.dataset.theme;
 
@@ -77,7 +76,7 @@
 
     var saveBtn = document.getElementById("save-button");
     var resetBtn = document.getElementById("reset-button");
-    var content = document.getElementById('content');
+    var content = document.getElementById("content");
 
     console.log(content);
     saveBtn.addEventListener("click", function (e) {
@@ -85,7 +84,7 @@
             content.value = editor.getValue();
 //            alert(editor.getValue());
             console.log(content.value);
-            document.getElementById('gist-content').submit();
+            document.getElementById("gist-content").submit();
 
         }
     });
