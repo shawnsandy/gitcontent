@@ -131,7 +131,7 @@ class GistController extends Controller
 
 
         $data = $request->all();
-        dump($data);
+//        dump($data);
         if ($request->exists('new-file')):
             // parse a create am array to handle new file
             $data = [
@@ -141,11 +141,11 @@ class GistController extends Controller
                     ]
                 ]
                 ];
-            dd($data);
+
         endif ;
 
         if ($saved = $this->save($data, $gistId)) :
-            $request->session()->flash('success', 'Your gist has been saved');
+            $request->session()->flash('success', 'Your gist has been Updated');
         else :
             $request->session()->flash('error', 'Sorry an error occurred while saving your gist');
         endif;

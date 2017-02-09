@@ -19,16 +19,20 @@
 
         <div class="col-md-12">
 
+            <h3>Add a new file to this Gist</h3>
             <form action="/gist/{{ $data['id'] }}?new-file" method="post" id="gist-content">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
+
                 <p class="input-group">
-                    <span class="input-group-addon" id=""><i class="fa fa-file"></i> Add File</span>
+                    <span class="input-group-addon" id=""><i class="fa fa-file-text"></i> </span>
                     <input type="text" class="form-control input-lg" name="files"
                            placeholder="Enter the filename (readme.md) and click save">
-                    <span class="input-group-addon" id="">
-                        <button href="" class="btn btn-link btn-sm">Save New File</button>
+                    <span class="input-group-addon text-uppercase" id="">
+                      <button type="submit" class="btn btn-default btn-sm btn-link ">
+                        <span class="h5"><i class="fa fa-plus"></i> Add New File</span>
+                      </button>
                     </span>
                 </p>
 
@@ -38,11 +42,14 @@
         </div>
 
         <div class="col-md-12">
-            <p>
-                <button id="save-button" type="submit" class="btn btn-primary btn-lg btn-block">Save Gist</button>
+
+            <p class="text-right">
+                <button id="save-button" type="submit" class="btn btn-success text-capitalize"><i
+                            class="fa fa-chevron-right"></i> Update {{ $data['description'] }}</button>
             </p>
-            <hr>
+
         </div>
+
 
     </div>
 

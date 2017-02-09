@@ -61,7 +61,7 @@
         var theme = $(this).data('theme');
         var mode = $(this).data('mode');
         var readonly = $(this).data('readonly');
-        var filename = $(this).data('filename');
+        var filename = $(this).data('filename') ? $(this).data('filename') : 'new';
         var content = document.getElementById('content-' + filename);
 
         console.log(content);
@@ -91,5 +91,3 @@
 
 </script>
 @endpush
-
-
