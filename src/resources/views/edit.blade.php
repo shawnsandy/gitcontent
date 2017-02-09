@@ -6,36 +6,35 @@
 
     <div class="container">
         <div class="row">
-            @include("gitcontent::partials.navigation")
-            <form action="/gist/{{ $data['id'] }}" method="post" id="gist-content">
-                {{ csrf_field() }}
-                {{ method_field('PUT') }}
-                @include('gitcontent::component.update')
+
+
+        </div>
+
+        @include("gitcontent::partials.navigation")
+        <form action="/gist/{{ $data['id'] }}" method="post" id="gist-content">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            @include('gitcontent::component.update')
+        </form>
+        <div class="col-md-12">
+            <p>
+                <button id="save-button" type="submit" class="btn btn-primary btn-lg btn-block">Save Gist</button>
+            </p>
+            <hr>
+        </div>
+        <div class="col-md-12">
+            <form action="/">
+
+                <p class="input-group">
+                    <span class="input-group-addon" id=""><i class="fa fa-file"></i> Add File</span>
+                    <input type="text" class="form-control input-lg"
+                           placeholder="Enter the filename (readme.md) and click save">
+                    <span class="input-group-addon" id="">
+                        <button href="" class="btn btn-link btn-sm">Save New File</button>
+                    </span>
+                </p>
+
             </form>
-
-            <div class="row-">
-
-                <div class="col-md-10">
-
-                    <form action="/">
-
-                        <p class="input-group input-group-lg">
-                            <span class="input-group-addon" id="">Add new file</span>
-                            <input type="text" class="form-control"
-                                   placeholder="Enter the filename (readme.md) and click save">
-                            <span class="input-group-addon" id="">
-                            <button href="" class="btn btn-link btn-xs">Save</button>
-                        </span>
-                        </p>
-
-                    </form>
-                </div>
-
-                <div class="col-md-2">
-                    <button id="save-button" type="submit" class="btn btn-primary btn-lg btn-block">Save Gist</button>
-                </div>
-
-            </div>
         </div>
     </div>
 
