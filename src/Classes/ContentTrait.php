@@ -90,5 +90,29 @@
             return $pagination;
         }
 
+        public function formatUpdates($data = []) {
+
+            $update =   [
+                'files' => [
+                    $data['files'] => [
+                        'content' => isset($data['content']) ? $data['content'] : "// add code here"
+                    ]
+                ]
+            ];
+
+            return $update;
+        }
+
+        public function formatFileDelete($data = []) {
+
+            $delete = [
+                'files' => [
+                    $data['files'] => null
+                ]
+            ];
+
+            return $delete ;
+        }
+
 
     }

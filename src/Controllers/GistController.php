@@ -16,7 +16,6 @@ class GistController extends Controller
     protected $client;
     protected $cacheId = 'git-cache';
     protected $cacheTime = 60;
-
     protected $comments;
 
     /**
@@ -70,15 +69,22 @@ class GistController extends Controller
      */
     public function show($gistId)
     {
+        try {
+            $gist = $this->gist->get($gistId);
+        } catch  (Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('info', 'Whoops! This Gist You Requested Was ' . $e->getMessage());
+        }
 
-        $gist = $this->gist->get($gistId);
-
-        $comments = $this->comments->all($gistId);
+        try {
+            $comments = $this->comments->all($gistId);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
 
         return view('gitcontent::show', compact('gist', 'comments', 'gistId'));
 
     }
-
 
     public function edit($gistId)
     {
@@ -121,7 +127,8 @@ class GistController extends Controller
      */
     public function update(Request $request, $gistId)
     {
-        // dd($request->all());
+        $file_anchor = null ;
+
         $this->validate($request, [
             'files' => 'sometimes|required',
             'description' => 'sometimes|required',
@@ -131,16 +138,11 @@ class GistController extends Controller
 
 
         $data = $request->all();
-//        dump($data);
+
         if ($request->exists('new-file')):
-            // parse a create am array to handle new file
-            $data = [
-                'files' => [
-                    $data['files'] => [
-                        'content' => isset($data['content']) ? $data['content'] : "// add you code here"
-                    ]
-                ]
-                ];
+
+            $file_anchor = "#save-button";
+            $data = $this->gist->formatUpdates($data);
 
         endif ;
 
@@ -150,7 +152,7 @@ class GistController extends Controller
             $request->session()->flash('error', 'Sorry an error occurred while saving your gist');
         endif;
 
-        return redirect('/gist/' . $saved['id'] . '/edit');
+        return redirect('/gist/' . $saved['id'] . '/edit'.$file_anchor);
 
     }
 
@@ -184,8 +186,8 @@ class GistController extends Controller
     private function save($data = [], $gistId = NULL)
     {
 
-
         try {
+
             if (is_null($gistId)):
                 $saved = $this->gist->create($data);
             else :
@@ -202,13 +204,7 @@ class GistController extends Controller
         }
 
         return $saved;
-    }
-
-    public function forms(Request $request)
-    {
-        return $request->all();
 
     }
-
 
 }
