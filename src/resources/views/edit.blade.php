@@ -5,11 +5,6 @@
 @section('content')
 
     <div class="container">
-        <div class="row">
-
-
-        </div>
-
         @include("gitcontent::partials.navigation")
         <form action="/gist/{{ $data['id'] }}" method="post" id="gist-content">
             {{ csrf_field() }}
@@ -31,8 +26,9 @@
                 </select>
             </div>
 
-            @each('gitcontent::component.ace-editor', $data['files'], 'data')
-
+            @foreach($data['files'] as $file)
+                @include('gitcontent::component.gist-editor',['id' => $data['id']])
+            @endforeach
         </form>
 
         <div class="col-md-12">
@@ -55,10 +51,13 @@
 
             <p class="text-left">
                 <button id="save-button" type="submit" class="btn btn-success btn-lg text-capitalize">
-                   <span class="lead-"><i class="fa fa-chevron-right"></i> Update {{ $data['description'] }}</span>
+                    <span class="lead-">
+                        <i class="fa fa-chevron-right"></i> Update {{ str_limit($data['description'], 21)}}
+                    </span>
                 </button>
 
-                <a href="/delete-gist/{{ $gistId }}" class="btn btn-danger btn-lg delete-btn hide lead-">Yes delete this gist forever!</a>
+                <a href="/delete-gist/{{ $gistId }}" class="btn btn-danger btn-lg delete-btn hide lead-">Yes delete this
+                    forever?</a>
                 <button href="" class="btn btn-warning btn-lg delete-gist">Delete</button>
             </p>
 
@@ -70,6 +69,7 @@
 @endsection
 
 @push('inline-styles')
+
 <style type="text/css" media="screen">
     #editor {
         /*position: absolute;*/
@@ -79,13 +79,17 @@
         left: 0;
     }
 </style>
+
 @endpush
 
 @push('scripts')
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
+
 @endpush
 
 @push('inline_scripts')
+
 <script>
 
     var exts = {
@@ -137,13 +141,15 @@
 
     $('.delete-gist').click(function (e) {
         e.preventDefault();
-        if($(this).text() == "Delete") {
-            $(this).text("Cancel") ;
+        if ($(this).html() == "Delete") {
+            $(this).html("<i class='fa fa-times'></i> Cancel");
         } else {
-            $(this).text('Delete')
+            $(this).html('Delete')
         }
         $('.delete-btn').toggleClass('hide');
     })
+
 </script>
+
 @endpush
 

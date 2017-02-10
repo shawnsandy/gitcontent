@@ -38,6 +38,7 @@ class GistController extends Controller
         $resultsPerPage = 10;
 
         $cacheId = $this->cacheId;
+
         if (request()->has('page'))
             $cacheId = $cacheId . '-' . request()->get('page');
 
@@ -127,6 +128,7 @@ class GistController extends Controller
      */
     public function update(Request $request, $gistId)
     {
+
         $file_anchor = null ;
 
         $this->validate($request, [
@@ -135,7 +137,6 @@ class GistController extends Controller
             'public' => 'sometimes|required',
             'content' => 'sometimes|required',
         ]);
-
 
         $data = $request->all();
 
@@ -156,6 +157,10 @@ class GistController extends Controller
 
     }
 
+    public function updateFiles(Request $request) {
+        dd($request->all());
+    }
+
     /**
      * Delete gist
      * @param $gistId
@@ -173,7 +178,7 @@ class GistController extends Controller
         }
 
         $this->gist->forgetItem($gistId);
-        return redirect('/gist')->with('success', 'YOur gist has been deleted');
+        return redirect('/gist')->with('success', 'Your gist has been deleted');
 
     }
 
