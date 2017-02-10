@@ -35,7 +35,7 @@ class GistUpdateController extends Controller
                 return back()->with('error', $exception->getMessage());
             }
 
-        return back()->with('success', 'Your file was delete... ');
+        return back()->with('success', 'Your file was deleted... Forever');
 
     }
 

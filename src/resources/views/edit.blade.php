@@ -70,15 +70,6 @@
 
 @push('inline-styles')
 
-<style type="text/css" media="screen">
-    #editor {
-        /*position: absolute;*/
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-</style>
 
 @endpush
 
@@ -147,9 +138,21 @@
             $(this).html('Delete')
         }
         $('.delete-btn').toggleClass('hide');
-    })
+    });
+
+    $('.delete-file-btn').each(function () {
+
+        $btn = this;
+        $(this).click(function(e) {
+
+            if ($(this).text() != 'Confirm') {
+                e.preventDefault();
+                $(this).html('Confirm');
+            }
+        });
+
+    });
 
 </script>
 
 @endpush
-

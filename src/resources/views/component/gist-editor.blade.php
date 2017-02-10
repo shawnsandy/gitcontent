@@ -10,12 +10,11 @@
             </div>
             <div class="col-md-6 text-right">
                 <p>
-                    <a href="/delete-file/{{ $id }}?deletefile={{ $file['filename'] }}" class="btn btn-xs btn-danger">
-                        <i class="fa fa-times"></i>
-                    </a>
+                    <a href="/delete-file/{{ $id }}?deletefile={{ $file['filename'] }}" class="btn btn-xs btn-danger delete-file-btn"><i class="fa fa-times"></i></a>
                 </p>
             </div>
         </div>
         @include('gitcontent::component.ace')
     </div>
 </div>
+
