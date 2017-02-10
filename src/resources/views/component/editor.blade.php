@@ -50,17 +50,6 @@
 @push('inline_scripts')
 <script>
 
-    var exts = {
-        html: "html",
-        js: "javascript",
-        php: "php",
-        md: "markdown",
-        txt: "text",
-        xml: "xml",
-        sql: "sql",
-        svg: "svg"
-    };
-
     var config = document.getElementById('git-edit');
     var theme = config.dataset.theme;
 
@@ -92,6 +81,19 @@
     resetBtn.addEventListener("click", function () {
         editor.setValue("", -1);
     });
+
+
+    var exts = {
+        html: "html",
+        js: "javascript",
+        php: "php",
+        md: "markdown",
+        txt: "text",
+        xml: "xml",
+        sql: "sql",
+        svg: "svg"
+    };
+
 
     //file name
     var filename = document.getElementById('filename');
