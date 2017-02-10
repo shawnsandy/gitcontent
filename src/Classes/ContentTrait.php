@@ -14,8 +14,6 @@
     trait ContentTrait
     {
 
-
-
         protected $cacheId = 'git-cache';
         protected $cacheTime = 60;
 
@@ -103,15 +101,16 @@
             return $update;
         }
 
-        public function formatFileDelete($data = []) {
+        public function formatFileDelete($data = null) {
 
             $delete = [
                 'files' => [
-                    $data['files'] => null
+                    $data => null
                 ]
             ];
 
             return $delete ;
+
         }
 
 
