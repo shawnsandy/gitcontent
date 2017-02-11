@@ -142,16 +142,21 @@
 
     $('.delete-file-btn').each(function () {
 
-        $btn = this;
+        var btn = this;
         $(this).click(function(e) {
 
             if ($(this).text() != 'Confirm') {
                 e.preventDefault();
                 $(this).html('Confirm');
+                setTimeout(function() {
+                    console.log(btn);
+                    $(btn).html("<i class=\"fa fa-times\"></i>")
+                }, 2000)
             }
         });
 
     });
+
 
 </script>
 
