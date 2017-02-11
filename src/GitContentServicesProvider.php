@@ -46,14 +46,13 @@ class GitContentServicesProvider extends ServiceProvider
          * Package config
          */
         $this->publishes(
-            [__DIR__ . '/config/pagekit.php' => config_path('pagekit.php')],
+            [__DIR__ . '/config/config.php' => config_path('gitcontent.php')],
             'gitcontent-config'
         );
 
         if (!$this->app->runningInConsole()) :
             include_once __DIR__ . '/Helpers/helper.php';
         endif;
-
 
     }
 
@@ -64,10 +63,12 @@ class GitContentServicesProvider extends ServiceProvider
      */
     public function register()
     {
-        /***  remove this line to uncomment and setup ****
+
        $this->mergeConfigFrom(
-            __DIR__ . 'App/config/config.php', '__YOUR_KEY_NAME__'
+            __DIR__ . '/config/config.php', 'gitcontent'
         );
+
+       /***  remove this line to uncomment and setup ****
         $this->app->bind(
             '__YOUR_FACADE_NAME__', function () {
                 return new YOUR_CLASS_NAME();

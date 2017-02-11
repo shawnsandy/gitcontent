@@ -9,6 +9,8 @@
   "author": "shawn sandy",
   "license": "MIT",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "codemirror": "^5.23.0",
+    "gulp": "^3.9.1",
+    "prismjs": "^1.6.0"
   }
 }
