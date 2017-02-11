@@ -9,7 +9,7 @@
 @endif
 
 @if(Session::has('error'))
-    <p class="alert alert-error">{{ Session::get('error') }}</p>
+    <p class="alert alert-danger">{{ Session::get('success') }}</p>
 @endif
 
 @if(Session::has('success'))
@@ -23,3 +23,4 @@
 @if(Session::has('info'))
     <p class="alert alert-info">{{ Session::get('info') }}</p>
 @endif
+
