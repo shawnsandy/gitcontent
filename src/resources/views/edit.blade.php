@@ -50,13 +50,13 @@
         <div class="col-md-12">
 
             <p class="text-left">
-                <button id="save-button" type="submit" class="btn btn-success btn-lg text-capitalize">
+                <button id="save-button" type="submit" class="btn btn-success text-capitalize">
                     <span class="lead-">
                         <i class="fa fa-chevron-right"></i> Update {{ str_limit($data['description'], 21)}}
                     </span>
                 </button>
 
-                <a href="/delete-gist/{{ $gistId }}" class="btn btn-default btn-lg delete-gist"><i class="fa fa-trash"></i>  Delete</a>
+                <a href="/delete-gist/{{ $gistId }}" class="btn btn-default delete-gist"><i class="fa fa-trash"></i>  Delete Gist</a>
             </p>
 
         </div>
@@ -136,7 +136,7 @@
             e.preventDefault();
             $(this).html("<i class=\"fa fa-times\"></i> Confirm");
             setTimeout(function(){
-             $(del_btn).html("<i class=\"fa fa-trash-o\"></i> Delete");
+             $(del_btn).html("<i class=\"fa fa-trash-o\"></i> Delete Gist");
             }, 3000);
 
         }
@@ -159,9 +159,6 @@
         });
 
     });
-
-
-
 
 </script>
 
