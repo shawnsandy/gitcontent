@@ -56,7 +56,7 @@
                     </span>
                 </button>
 
-                <a href="/delete-gist/{{ $gistId }}" class="btn btn-danger btn-lg delete-gist"><i class="fa fa-trash"></i>  Delete</a>
+                <a href="/delete-gist/{{ $gistId }}" class="btn btn-default btn-lg delete-gist"><i class="fa fa-trash"></i>  Delete</a>
             </p>
 
         </div>
@@ -136,8 +136,8 @@
             e.preventDefault();
             $(this).html("<i class=\"fa fa-times\"></i> Confirm");
             setTimeout(function(){
-             $(del_btn).html("<i class=\"fa fa-trash\"></i> Delete");
-            }, 4000);
+             $(del_btn).html("<i class=\"fa fa-trash-o\"></i> Delete");
+            }, 3000);
 
         }
 
@@ -154,11 +154,13 @@
                 setTimeout(function() {
                     console.log(btn);
                     $(btn).html("<i class=\"fa fa-times\"></i>")
-                }, 2000)
+                }, 3000)
             }
         });
 
     });
+
+
 
 
 </script>
