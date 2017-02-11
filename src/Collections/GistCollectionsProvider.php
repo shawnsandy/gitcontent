@@ -6,12 +6,12 @@
      * Time: 12:37 PM
      */
 
-    namespace ShawnSandy\GitContent\Stories;
+    namespace ShawnSandy\GitContent\Collections;
 
 
     use Illuminate\Support\ServiceProvider;
 
-    class StoriesProvider extends ServiceProvider
+    class GistCollectionsProvider extends ServiceProvider
     {
 
         /**

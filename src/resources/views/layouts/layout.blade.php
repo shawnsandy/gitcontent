@@ -45,6 +45,10 @@
             display: none;
         }
 
+        .btn {
+            border-radius: 20px;
+        }
+
         footer {
             padding: 50px 0;
         }

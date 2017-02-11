@@ -54,25 +54,25 @@ class GitClient
         return $this->previous ;
     }
 
-
-    public function forgetCollection() {
-        Cache::forget($this->cacheId);
-        Log::info('Cache cleared');
-    }
-
-    public function forgetItem($id) {
-        Cache::forget($this->cacheId.'-'.$id);
-        Log::info('Cache cleared item '.$id);
-    }
-
-    public function cacheCollection($data) {
-        Cache::add($this->cacheId, $data, $this->cacheTime);
-        Log::info('Collection added or updated');
-    }
-
-    public function cacheItem($data, $id) {
-        Cache::add($this->cacheId.'-'.$id, $data, $this->cacheTime);
-        Log::info('Collection added or updated item '.$id);
-    }
+//
+//    public function forgetCollection() {
+//        Cache::forget($this->cacheId);
+//        Log::info('Cache cleared');
+//    }
+//
+//    public function forgetItem($id) {
+//        Cache::forget($this->cacheId.'-'.$id);
+//        Log::info('Cache cleared item '.$id);
+//    }
+//
+//    public function cacheCollection($data) {
+//        Cache::add($this->cacheId, $data, $this->cacheTime);
+//        Log::info('Collection added or updated');
+//    }
+//
+//    public function cacheItem($data, $id) {
+//        Cache::add($this->cacheId.'-'.$id, $data, $this->cacheTime);
+//        Log::info('Collection added or updated item '.$id);
+//    }
 
 }
