@@ -56,9 +56,7 @@
                     </span>
                 </button>
 
-                <a href="/delete-gist/{{ $gistId }}" class="btn btn-danger btn-lg delete-btn hide lead-">Yes delete this
-                    forever?</a>
-                <button href="" class="btn btn-warning btn-lg delete-gist">Delete</button>
+                <a href="/delete-gist/{{ $gistId }}" class="btn btn-danger btn-lg delete-gist"><i class="fa fa-trash"></i>  Delete</a>
             </p>
 
         </div>
@@ -131,13 +129,18 @@
 
 
     $('.delete-gist').click(function (e) {
-        e.preventDefault();
-        if ($(this).html() == "Delete") {
-            $(this).html("<i class='fa fa-times'></i> Cancel");
-        } else {
-            $(this).html('Delete')
+
+        var del_btn  = this ;
+        if ($(this).html() != "<i class=\"fa fa-times\"></i> Confirm") {
+            console.log(del_btn);
+            e.preventDefault();
+            $(this).html("<i class=\"fa fa-times\"></i> Confirm");
+            setTimeout(function(){
+             $(del_btn).html("<i class=\"fa fa-trash\"></i> Delete");
+            }, 4000);
+
         }
-        $('.delete-btn').toggleClass('hide');
+
     });
 
     $('.delete-file-btn').each(function () {
