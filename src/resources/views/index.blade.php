@@ -1,7 +1,7 @@
 @extends('gitcontent::layouts.layout')
 
 @section('title', 'Title')
-
+@section('page_title', 'Collections')
 @section('content')
 
     <div class="container">
@@ -9,7 +9,7 @@
         <div class="row">
 
             <div class="paginate">
-                @include('gitcontent::partials.navigation')
+             @include('gitcontent::partials.navigation')
             </div>
 
             <div class="col-md-12">

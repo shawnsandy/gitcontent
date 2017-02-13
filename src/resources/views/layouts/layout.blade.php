@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>@yield('title') </title>
+    <title>@yield('title')</title>
     <meta name="description" content="@yield('description', 'Site description')">
     <meta name="author" content="Shawn Sandy">
     <!-- Latest compiled and minified CSS -->
@@ -60,14 +60,24 @@
 <body>
 <div class="container">
     <div class="row">
+        <div class="col-md-6">
+            <h1>
+                  Git Content  @yield('page_title')
+            </h1>
+
+
+        </div>
+        <div class="col-md-6 text-right">
+            <p class="h1">
+                <a href="/" class="btn btn-link btn-lg"><i class="fa fa-home"></i></a>
+            </p>
+        </div>
         <div class="col-md-12">
-            <h1><a href="/gist">Git Content</a></h1>
-            <hr>
             @include('gitcontent::partials.messages')
         </div>
     </div>
 </div>
-
+<hr>
 @yield('content')
 <footer>
     <p class="text-center">GitContent for Laravel</p>

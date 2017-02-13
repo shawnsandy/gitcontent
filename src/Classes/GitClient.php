@@ -26,8 +26,9 @@ class GitClient
 
         /* TODO Bind Client to service provider */
         $this->client = App::make('Github\Client');
-        $this->paginate = App::make('Github\ResultPager', [$this->client]);
         $this->client->authenticate('cfb8f16f8bcf0a4f3039d4e94fc9e56ca80caaa4', NULL, Client::AUTH_HTTP_TOKEN);
+        $this->paginate = App::make('Github\ResultPager', [$this->client]);
+
 
     }
 
@@ -54,25 +55,25 @@ class GitClient
         return $this->previous ;
     }
 
-//
-//    public function forgetCollection() {
-//        Cache::forget($this->cacheId);
-//        Log::info('Cache cleared');
-//    }
-//
-//    public function forgetItem($id) {
-//        Cache::forget($this->cacheId.'-'.$id);
-//        Log::info('Cache cleared item '.$id);
-//    }
-//
-//    public function cacheCollection($data) {
-//        Cache::add($this->cacheId, $data, $this->cacheTime);
-//        Log::info('Collection added or updated');
-//    }
-//
-//    public function cacheItem($data, $id) {
-//        Cache::add($this->cacheId.'-'.$id, $data, $this->cacheTime);
-//        Log::info('Collection added or updated item '.$id);
-//    }
+
+    public function forgetCollection() {
+        Cache::forget($this->cacheId);
+        Log::info('Cache cleared');
+    }
+
+    public function forgetItem($id) {
+        Cache::forget($this->cacheId.'-'.$id);
+        Log::info('Cache cleared item '.$id);
+    }
+
+    public function cacheCollection($data) {
+        Cache::add($this->cacheId, $data, $this->cacheTime);
+        Log::info('Collection added or updated');
+    }
+
+    public function cacheItem($data, $id) {
+        Cache::add($this->cacheId.'-'.$id, $data, $this->cacheTime);
+        Log::info('Collection added or updated item '.$id);
+    }
 
 }
