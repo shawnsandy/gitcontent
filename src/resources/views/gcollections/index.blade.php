@@ -6,10 +6,13 @@
 @section('content')
 
     <div class="container">
+        <div class="navigate">
+            @include('gitcontent::partials.collections-navigation')
+        </div>
         <div class="row">
-            <div class="col-md-12">
+
                 @each('gitcontent::gcollections.partials.collections', $data, 'collection')
-            </div>
+
         </div>
     </div>
 
