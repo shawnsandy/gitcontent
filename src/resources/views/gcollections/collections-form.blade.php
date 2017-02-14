@@ -1,4 +1,8 @@
+@if(isset($data))
+{{ Form::model($data,  (['url' => "collections/{ $data->id }", 'method' => 'post']) }}
+@else
 {{ Form::open(['url' => 'collections/', 'method' => 'post']) }}
+@endif
 
 <p>
     <label for="title">Title</label>

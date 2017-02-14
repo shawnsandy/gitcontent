@@ -36,7 +36,6 @@ class GistController extends Controller
     public function index()
     {
         $resultsPerPage = 10;
-
         $cacheId = $this->cacheId;
 
         if (request()->has('page'))

@@ -26,6 +26,7 @@
         public function index()
         {
             $data = GistCollection::all();
+
             return view('gitcontent::gcollections.index', compact('data'));
         }
 
@@ -47,17 +48,35 @@
 
         public function store(Request $request)
         {
+            $data = $request->all();
+            $data['gist_id'] = last(explode('/', $data['gist_id']));
 
             try {
-                $data = GistCollection::create($request->all());
+                GistCollection::create($data);
                 Session::flash('success', "Your collection has been saved");
             } catch (Exception $exception) {
-                Log::error('Error saving collection '. $exception->getMessage());
+                Log::error('Error saving collection ' . $exception->getMessage());
                 Session::flash('error', $exception->getMessage());
                 back()->withInput();
             }
 
             return back();
+        }
+
+        public function update($collectionId, Request $request)
+        {
+
+            $data = $request->all();
+            $data['gist_id'] = last(explode('/', $data['gist_id']));
+
+            //$collection = GistCollection::find($gitstId);
+
+            try {
+                GistCollection::updateOrCreate(['id' => $collectionId], $data );
+            } catch (Exception $exception) {
+                Log::error($exception->getMessage());
+            }
+
         }
 
     }
