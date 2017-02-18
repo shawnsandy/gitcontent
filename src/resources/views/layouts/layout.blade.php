@@ -61,15 +61,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
+
             <h1>
-                  Git Content  @yield('page_title')
+                <a href="/gist">Git Content  @yield('page_title')</a>
             </h1>
 
 
         </div>
         <div class="col-md-6 text-right">
             <p class="h1">
-                <a href="/" class="btn btn-link btn-lg"><i class="fa fa-home"></i></a>
+                <a href="/gist" class="btn btn-link btn-lg"><i class="fa fa-home"></i></a>
             </p>
         </div>
         <div class="col-md-12">
