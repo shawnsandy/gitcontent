@@ -73,12 +73,20 @@
                 <a href="/gist" class="btn btn-link btn-lg"><i class="fa fa-home"></i></a>
             </p>
         </div>
+
+
+    </div>
+</div>
+<hr>
+
+<div class="container">
+    <div class="row">
         <div class="col-md-12">
             @include('gitcontent::partials.messages')
         </div>
     </div>
 </div>
-<hr>
+
 @yield('content')
 <footer>
     <p class="text-center">GitContent for Laravel</p>
