@@ -9,12 +9,12 @@
     namespace ShawnSandy\GitContent\Collections;
 
 
-    use App\GistCollection;
-    use App\Http\Controllers\Controller;
-    use Crew\Unsplash\Exception;
-    use Illuminate\Http\Request;
     use Log;
     use Session;
+    use App\GistCollection;
+    use Illuminate\Http\Request;
+    use Crew\Unsplash\Exception;
+    use App\Http\Controllers\Controller;
 
     class CollectionController extends Controller
     {
@@ -26,28 +26,33 @@
         public function index()
         {
             $data = GistCollection::all();
-
             return view('gitcontent::gcollections.index', compact('data'));
         }
+
 
         public function show()
         {
 
         }
 
+        /**
+         * @param $collectionID
+         * @return string
+         */
+        public function edit($collectionID) {
+            return "collection";
+        }
+
+
         public function create()
         {
             return view('gitcontent::gcollections.create');
         }
 
-        public function edit()
-        {
-
-
-        }
 
         public function store(Request $request)
         {
+
             $data = $request->all();
             $data['gist_id'] = last(explode('/', $data['gist_id']));
 
@@ -61,6 +66,7 @@
             }
 
             return back();
+
         }
 
         public function update($collectionId, Request $request)

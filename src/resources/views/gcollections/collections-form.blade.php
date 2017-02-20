@@ -1,5 +1,6 @@
 @if(isset($data))
-{{ Form::model($data,  (['url' => "collections/{ $data->id }", 'method' => 'post']) }}
+{{ Form::model($data,  (['url' => "collections/{ $data->id }", 'method' => 'post'])) }}
+    {{ method_field("PUT") }}
 @else
 {{ Form::open(['url' => 'collections/', 'method' => 'post']) }}
 @endif
