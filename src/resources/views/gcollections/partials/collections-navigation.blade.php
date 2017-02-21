@@ -1,7 +1,7 @@
-<div class="col-md-12 text-right">
-    <p>
 
-        <a href="/collections" class="btn btn-default">Collections</a>
+    <p class="text-right">
+
+
         <a href="/collections/create" class="btn btn-default">New</a>
         @if(isset($gistId))
             @if(Route::currentRouteName() == 'gist.edit')
@@ -13,5 +13,5 @@
         <a href="{{ URL::previous() }}" class="btn btn-default">Back</a>
 
     </p>
-</div>
+
 

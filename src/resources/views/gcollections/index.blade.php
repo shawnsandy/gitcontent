@@ -1,14 +1,16 @@
 @extends("gitcontent::layouts.layout")
 
 @section('title', 'Collections')
-@section('page_title', 'Collections')
+
+@section('navigate')
+    @include('gitcontent::gcollections.partials.collections-navigation')
+@endsection
 
 @section('content')
 
+
     <div class="container">
-        <div class="paginate">
-            @include('gitcontent::gcollections.partials.collections-navigation')
-        </div>
+
         <div class="row">
             @each('gitcontent::gcollections.partials.collections', $data, 'collection')
         </div>

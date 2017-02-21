@@ -18,9 +18,8 @@ class GistStoreCollectionController extends GistCollectionController
 
     public function __construct()
     {
-        parent::__construct() ;
+        parent::__construct();
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -42,7 +41,7 @@ class GistStoreCollectionController extends GistCollectionController
         } catch (Exception $exception) {
             $addToGithub = [
                 'filename' => 'README.md',
-                'content' => "### {$data['title']}",
+                'content' => "# {$data['title']}",
                 'public' => TRUE,
                 'description' => $data['title']
             ];
@@ -53,7 +52,9 @@ class GistStoreCollectionController extends GistCollectionController
 
             try {
 
-                $this->gist->create($addToGithub);
+                $gist = $this->gist->create($addToGithub);
+
+                $data['gist_id'] = $gist['id'];
 
             } catch (Exception $exception) {
 
@@ -63,7 +64,7 @@ class GistStoreCollectionController extends GistCollectionController
 
         }
 
-        if( GistCollection::create($data)) {
+        if (GistCollection::create($data)) {
 
             Session::flash('success', "Your collection has been saved");
 
@@ -73,7 +74,7 @@ class GistStoreCollectionController extends GistCollectionController
 
         }
 
-        return back();
+        return redirect('/collections');
 
     }
 

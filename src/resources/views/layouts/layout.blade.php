@@ -35,12 +35,13 @@
         }
 
         .paginate {
-            padding: 20px 0 20px;
+            padding: 20px 0 60px;
         }
 
         .form-control {
             border-radius: 0;
         }
+
         .hide {
             display: none;
         }
@@ -84,10 +85,25 @@
 
 <div class="container">
     <div class="row">
+
+        <div class="paginate">
+            <div class="col-md-6">
+                <a href="/gist" class="btn btn-default">Gist</a>
+                <a href="/collections" class="btn btn-default">Collections</a>
+            </div>
+            <div class="col-md-6">
+                @yield('navigate')
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
         <div class="col-md-12">
             @include('gitcontent::partials.messages')
         </div>
     </div>
+
 </div>
 
 @yield('content')
