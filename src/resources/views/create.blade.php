@@ -1,7 +1,9 @@
 @extends('gitcontent::layouts.layout')
 
 @section('title', 'Create  new gist')
-
+@section("navigate")
+    @include('gitcontent::partials.navigation')
+@endsection
 @section('content')
 
     <div class="container">

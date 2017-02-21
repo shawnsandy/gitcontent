@@ -2,15 +2,15 @@
 
 @section('title', 'Title')
 @section('page_title', 'Collections')
+@section("navigate")
+    @include('gitcontent::partials.navigation')
+@endsection
 @section('content')
 
     <div class="container">
 
         <div class="row">
 
-            <div class="paginate">
-             @include('gitcontent::partials.navigation')
-            </div>
 
             <div class="col-md-12">
                 @each('gitcontent::component.collection-item', $data, 'gist')

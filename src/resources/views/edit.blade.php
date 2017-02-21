@@ -1,11 +1,13 @@
 @extends('gitcontent::layouts.layout')
 
 @section('title', 'Title')
-
+@section("navigate")
+    @include('gitcontent::partials.navigation')
+@endsection
 @section('content')
 
     <div class="container">
-        @include("gitcontent::partials.navigation")
+
         <form action="/gist/{{ $data['id'] }}" method="post" id="gist-content">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
