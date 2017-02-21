@@ -73,9 +73,8 @@ class GistController extends Controller
             $gist = $this->gist->get($gistId);
         } catch  (Exception $e) {
             Log::error($e->getMessage());
-            return back()->with('info', 'Whoops! This Gist You Requested Was ' . $e->getMessage());
+            return back()->with('info', 'Whoops! The Gist You Requested Was ' . $e->getMessage());
         }
-
         try {
             $comments = $this->comments->all($gistId);
         } catch (Exception $e) {

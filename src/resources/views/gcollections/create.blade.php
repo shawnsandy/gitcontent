@@ -10,7 +10,7 @@
         @include('gitcontent::partials.navigation')
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             @include('gitcontent::gcollections.collections-form')
         </div>
     </div>

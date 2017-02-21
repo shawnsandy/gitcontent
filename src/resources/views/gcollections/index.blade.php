@@ -6,7 +6,7 @@
 @section('content')
 
     <div class="container">
-        <div class="navigate">
+        <div class="paginate">
             @include('gitcontent::partials.collections-navigation')
         </div>
         <div class="row">
