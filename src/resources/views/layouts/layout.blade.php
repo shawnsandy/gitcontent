@@ -59,24 +59,27 @@
 
 <body>
 <div class="container">
+
     <div class="row">
+
         <div class="col-md-6">
 
             <h1>
-                <a href="/gist">Git Content  @yield('page_title')</a>
+                @yield('page_title', "Gist Content")
             </h1>
 
-
         </div>
+
         <div class="col-md-6 text-right">
             <p class="h1">
                 <a href="/gist" class="btn btn-link btn-lg"><i class="fa fa-home"></i></a>
             </p>
         </div>
 
-
     </div>
+
 </div>
+
 <hr>
 
 <div class="container">
@@ -88,6 +91,7 @@
 </div>
 
 @yield('content')
+
 <footer>
     <p class="text-center">GitContent for Laravel</p>
 </footer>

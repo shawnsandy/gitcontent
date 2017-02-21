@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="navigate">
-        @include('gitcontent::partials.navigation')
+        @include('gitcontent::gcollections.partials.collections-navigation')
     </div>
     <div class="row">
         <div class="col-md-12">

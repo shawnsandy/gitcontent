@@ -16,7 +16,6 @@
 
         protected $gist;
 
-
         /**
          * GistCollectionController constructor.
          */
@@ -32,7 +31,7 @@
          */
         public function index()
         {
-            $data = GistCollection::paginate("20");
+            $data = GistCollection::orderBy('id', 'desc')->paginate("20");
 
             return view('gitcontent::gcollections.index', compact('data'));
         }
@@ -47,63 +46,6 @@
             return view('gitcontent::gcollections.create');
         }
 
-        /**
-         * Store a newly created resource in storage.
-         *
-         * @param  \Illuminate\Http\Request $request
-         * @return \Illuminate\Http\Response
-         */
-        public function store(Request $request)
-        {
-
-            /*
-             * Check the $request->gist_id
-             *  get gist and create new collection
-             *  not found create a new gist and create collection
-             *
-             * */
-
-            $data = $request->all();
-
-            $data['gist_id'] = last(explode('/', $data['gist_id']));
-
-            try {
-
-                $gist = $this->gist->get($data['gist_id']);
-
-            } catch (Exception $exception) {
-                $add_gist = [
-                    'filename' => 'README.md',
-                    'content' => $data['title'],
-                    'public' => TRUE,
-                    'description' => $data['title']
-                ];
-
-            }
-
-            if (isset($add_gist)) {
-
-                try {
-
-                    $gist = $this->gist->create($add_gist);
-
-                } catch (Exception $exception) {
-
-                    Session::flash('error', 'Failed to create a new gist, please verify your account info');
-                }
-
-            }
-
-            if( GistCollection::create($data)) {
-                Session::flash('success', "Your collection has been saved");
-            } else {
-                Session::flash('error', 'Failed to save your collection');
-            }
-
-
-            return back();
-
-        }
 
         /**
          * Display the specified resource.
@@ -129,6 +71,7 @@
             $data = GistCollection::find($id);
 
             return view("gitcontent::gcollections.edit", compact('data'));
+
         }
 
         /**
@@ -140,6 +83,7 @@
          */
         public function update(Request $request, $id)
         {
+
 
             $data = $request->all();
 

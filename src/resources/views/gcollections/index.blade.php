@@ -7,12 +7,10 @@
 
     <div class="container">
         <div class="paginate">
-            @include('gitcontent::partials.collections-navigation')
+            @include('gitcontent::gcollections.partials.collections-navigation')
         </div>
         <div class="row">
-
-                @each('gitcontent::gcollections.partials.collections', $data, 'collection')
-
+            @each('gitcontent::gcollections.partials.collections', $data, 'collection')
         </div>
     </div>
 
