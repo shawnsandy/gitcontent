@@ -7,15 +7,14 @@
         <img alt="{{ '@'.$gist['ownerLogin'] }}" height="30" src="{{ $gist['ownerAvatar'] }}&amp;s=30" width="30">
 
        {{ (!empty($gist['description'] )) ? $gist['description'] : $gist['id'] }}
-           <small><a href="{{ $gist['gistUrl'] }}" target="_blank">View </a></small>
+           <a href="{{ $gist['gistUrl'] }}" target="_blank"><i class="fa fa-github"></i></a>
     </h3>
     <hr>
 
     @each('gitcontent::partials.gist-files', $gist['files'], 'item')
 
     <p>
-        <i class="fa fa-clock-o"></i> {{ $gist['created'] }} <i class="fa fa-user"></i> {{ $gist['ownerLogin'] }} <i
-                class="fa fa-pencil"></i> {{ $gist['updated'] }}
+        <i class="fa fa-clock-o"></i> {{ $gist['created'] }} <i class="fa fa-user"></i> {{ $gist['ownerLogin'] }} <i class="fa fa-pencil"></i> {{ $gist['updated'] }}
     </p>
 
     <hr>
