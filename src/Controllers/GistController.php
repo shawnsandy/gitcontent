@@ -176,6 +176,7 @@ class GistController extends Controller
         }
 
         $this->gist->forgetItem($gistId);
+        $this->gist->forgetCollection();
         return redirect('/gist')->with('success', 'Your gist has been deleted');
 
     }

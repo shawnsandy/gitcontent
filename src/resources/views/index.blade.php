@@ -1,7 +1,6 @@
 @extends('gitcontent::layouts.layout')
 
 @section('title', 'Title')
-@section('page_title', 'Collections')
 @section("navigate")
     @include('gitcontent::partials.navigation')
 @endsection
